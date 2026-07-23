@@ -1,0 +1,26 @@
+[
+    {
+      "id": "USR001",
+      "nome": "Administrador",
+      "usuario": "admin",
+      "senha": "123456",
+      "email": "admin@oficina.com",
+      "telefone": "(84) 99999-0000",
+      "cargo": "Administrador",
+      "nivelAcesso": 3,
+      "ultimoLogin": "2026-07-23 09:15",
+      "status": "Ativo"
+    },
+    {
+      "id": "USR002",
+      "nome": "Dayvid Emanuel",
+      "usuario": "Dayvin",
+      "senha": "050809",
+      "email": "dayvid@oficina.com",
+      "telefone": "(84) 98888-0000",
+      "cargo": "Mecânico Aprendiz",
+      "nivelAcesso": 2,
+      "ultimoLogin": "2026-07-22 17:42",
+      "status": "Ativo"
+    }
+  ]
