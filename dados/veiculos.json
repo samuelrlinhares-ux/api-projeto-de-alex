@@ -1,0 +1,21 @@
+[
+    {
+      "id": "VEI001",
+      "clienteId": "CLI001",
+      "placa": "ABC1D23",
+      "renavam": "12345678901",
+      "chassi": "9BWZZZ377VT004251",
+      "marca": "Chevrolet",
+      "modelo": "Onix LT",
+      "anoFabricacao": 2022,
+      "anoModelo": 2023,
+      "cor": "Prata",
+      "combustivel": "Flex",
+      "quilometragem": 42315,
+      "motor": "1.0 Turbo",
+      "transmissao": "Manual",
+      "ultimaRevisao": "2026-03-15",
+      "proximaRevisao": "2026-09-15",
+      "observacoes": "Veículo revisado regularmente."
+    }
+  ]
