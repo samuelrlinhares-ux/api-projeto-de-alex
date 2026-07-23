@@ -1,0 +1,23 @@
+[
+    {
+      "id": "CLI001",
+      "nome": "Italo Gabriel Texeira da Silva",
+      "cpf": "123.456.789-00",
+      "rg": "2.345.678",
+      "dataNascimento": "1992-08-14",
+      "telefone": "(84) 99999-1111",
+      "telefoneSecundario": "(84) 98888-1111",
+      "email": "italogabrielj4mini@email.com",
+      "endereco": {
+        "cep": "59600-000",
+        "rua": "Rua João Cordeiro",
+        "numero": "125",
+        "bairro": "Centro",
+        "cidade": "Mossoró",
+        "estado": "RN"
+      },
+      "dataCadastro": "2026-07-23",
+      "observacoes": "Cliente prefere contato pelo WhatsApp.",
+      "status": "Ativo"
+    }
+  ]
