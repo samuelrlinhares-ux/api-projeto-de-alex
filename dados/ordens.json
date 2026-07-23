@@ -1,0 +1,47 @@
+[
+    {
+      "id": "OS0001",
+      "numero": 1,
+      "clienteId": "CLI001",
+      "veiculoId": "VEI001",
+      "mecanicoResponsavel": "Carlos Oliveira",
+      "dataEntrada": "2026-07-23",
+      "horaEntrada": "08:30",
+      "previsaoEntrega": "2026-07-24",
+      "dataEntrega": null,
+      "status": "Em andamento",
+      "prioridade": "Normal",
+      "servicos": [
+        {
+          "descricao": "Troca de óleo",
+          "valor": 120
+        },
+        {
+          "descricao": "Troca do filtro de óleo",
+          "valor": 45
+        },
+        {
+          "descricao": "Balanceamento",
+          "valor": 80
+        }
+      ],
+      "pecas": [
+        {
+          "nome": "Óleo 5W30",
+          "quantidade": 4,
+          "valorUnitario": 45
+        },
+        {
+          "nome": "Filtro de óleo",
+          "quantidade": 1,
+          "valorUnitario": 35
+        }
+      ],
+      "desconto": 20,
+      "valorTotal": 440,
+      "formaPagamento": "PIX",
+      "garantiaDias": 90,
+      "diagnostico": "Necessária troca de óleo e filtro.",
+      "observacoes": "Cliente solicitou lavagem após o serviço."
+    }
+  ]
