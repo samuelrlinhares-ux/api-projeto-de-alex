@@ -1,0 +1,286 @@
+<%- include('../partials/header',{
+    titulo:'Clientes',
+    paginaCss:'clientes'
+    }) %>
+    
+    <%- include('../partials/menu') %>
+    
+    <main class="conteudo">
+    
+    <header class="pagina-topo">
+    
+    <div>
+    
+    <h1>Clientes</h1>
+    
+    <p>Gerencie todos os clientes cadastrados na oficina.</p>
+    
+    </div>
+    
+    <a href="/clientes/novo" class="btn-novo">
+    
+    <i class="fa-solid fa-user-plus"></i>
+    
+    Novo Cliente
+    
+    </a>
+    
+    </header>
+    
+    <section class="barra-pesquisa">
+    
+    <form action="/clientes" method="GET">
+    
+    <div class="campo-pesquisa">
+    
+    <i class="fa-solid fa-magnifying-glass"></i>
+    
+    <input
+    type="text"
+    name="pesquisa"
+    placeholder="Pesquisar por nome, telefone ou e-mail">
+    
+    </div>
+    
+    <button>
+    
+    Pesquisar
+    
+    </button>
+    
+    </form>
+    
+    </section>
+    
+    <% if(typeof mensagem !== 'undefined'){ %>
+    
+    <div class="alerta">
+    
+    <%= mensagem %>
+    
+    </div>
+    
+    <% } %>
+    
+    <section class="card-tabela">
+    
+    <table>
+    
+    <thead>
+    
+    <tr>
+    
+    <th>ID</th>
+    
+    <th>Nome</th>
+    
+    <th>Telefone</th>
+    
+    <th>Email</th>
+    
+    <th>Veículos</th>
+    
+    <th>Ações</th>
+    
+    </tr>
+    
+    </thead>
+    
+    <tbody>
+    
+    <% if(clientes && clientes.length>0){ %>
+    
+    <% clientes.forEach(cliente=>{ %>
+    
+    <tr>
+    
+    <td>
+    
+    #<%= cliente.id %>
+    
+    </td>
+    
+    <td>
+    
+    <strong>
+    
+    <%= cliente.nome %>
+    
+    </strong>
+    
+    </td>
+    
+    <td>
+    
+    <%= cliente.telefone %>
+    
+    </td>
+    
+    <td>
+    
+    <%= cliente.email %>
+    
+    </td>
+    
+    <td>
+    
+    <%= cliente.totalVeiculos || 0 %>
+    
+    </td>
+    
+    <td class="acoes">
+    
+    <a
+    href="/clientes/<%= cliente.id %>"
+    class="btn-ver">
+    
+    <i class="fa-solid fa-eye"></i>
+    
+    </a>
+    
+    <a
+    href="/clientes/<%= cliente.id %>/editar"
+    class="btn-editar">
+    
+    <i class="fa-solid fa-pen"></i>
+    
+    </a>
+    
+    <form
+    action="/clientes/<%= cliente.id %>?_method=DELETE"
+    method="POST"
+    style="display:inline;">
+    
+    <button
+    class="btn-excluir"
+    onclick="return confirm('Deseja excluir este cliente?')">
+    
+    <i class="fa-solid fa-trash"></i>
+    
+    </button>
+    
+    </form>
+    
+    </td>
+    
+    </tr>
+    
+    <% }) %>
+    
+    <% }else{ %>
+    
+    <tr>
+    
+    <td colspan="6">
+    
+    <div class="sem-registros">
+    
+    <i class="fa-solid fa-users"></i>
+    
+    <h3>
+    
+    Nenhum cliente encontrado
+    
+    </h3>
+    
+    <p>
+    
+    Cadastre o primeiro cliente da oficina.
+    
+    </p>
+    
+    <a
+    href="/clientes/novo"
+    class="btn-novo">
+    
+    Cadastrar Cliente
+    
+    </a>
+    
+    </div>
+    
+    </td>
+    
+    </tr>
+    
+    <% } %>
+    
+    </tbody>
+    
+    </table>
+    
+    </section>
+    
+    <section class="estatisticas">
+    
+    <div class="card-estatistica">
+    
+    <i class="fa-solid fa-users"></i>
+    
+    <div>
+    
+    <h2>
+    
+    <%= totalClientes || clientes?.length || 0 %>
+    
+    </h2>
+    
+    <p>
+    
+    Clientes Cadastrados
+    
+    </p>
+    
+    </div>
+    
+    </div>
+    
+    <div class="card-estatistica">
+    
+    <i class="fa-solid fa-car"></i>
+    
+    <div>
+    
+    <h2>
+    
+    <%= totalVeiculos || 0 %>
+    
+    </h2>
+    
+    <p>
+    
+    Veículos
+    
+    </p>
+    
+    </div>
+    
+    </div>
+    
+    <div class="card-estatistica">
+    
+    <i class="fa-solid fa-screwdriver-wrench"></i>
+    
+    <div>
+    
+    <h2>
+    
+    <%= totalOrdens || 0 %>
+    
+    </h2>
+    
+    <p>
+    
+    Ordens de Serviço
+    
+    </p>
+    
+    </div>
+    
+    </div>
+    
+    </section>
+    
+    </main>
+    
+    <%- include('../partials/footer') %>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cadastro | Oficina Mecânica Pro</title>
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/login.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+<div class="lado-esquerdo">
+
+<div class="logo">
+
+<i class="fa-solid fa-car"></i>
+
+<h1>Oficina Mecânica Pro</h1>
+
+</div>
+
+<h2>Criar Conta</h2>
+
+<p>
+
+Cadastre um novo usuário para acessar o sistema.
+
+</p>
+
+</div>
+
+<div class="lado-direito">
+
+<div class="card-login">
+
+<h2>Registro</h2>
+
+<form
+action="/auth/registro"
+method="POST">
+
+<div class="campo">
+
+<label>Nome</label>
+
+<input
+type="text"
+name="nome"
+placeholder="Nome completo"
+required>
+
+</div>
+
+<div class="campo">
+
+<label>Email</label>
+
+<input
+type="email"
+name="email"
+placeholder="Digite seu email"
+required>
+
+</div>
+
+<div class="campo">
+
+<label>Senha</label>
+
+<input
+type="password"
+name="senha"
+placeholder="Crie uma senha"
+required>
+
+</div>
+
+<div class="campo">
+
+<label>Confirmar Senha</label>
+
+<input
+type="password"
+name="confirmarSenha"
+placeholder="Repita a senha"
+required>
+
+</div>
+
+<button
+type="submit"
+class="btn-login">
+
+<i class="fa-solid fa-user-plus"></i>
+
+Cadastrar
+
+</button>
+
+</form>
+
+<div class="links">
+
+<a href="/auth/login">
+
+Já possui conta? Entrar
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

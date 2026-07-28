@@ -1,0 +1,169 @@
+<%- include('../partials/header',{
+    titulo:'Editar Cliente',
+    paginaCss:'clientes'
+    }) %>
+    
+    <%- include('../partials/menu') %>
+    
+    <main class="conteudo">
+    
+    <div class="topo-pagina">
+    
+    <div>
+    
+    <h1>Editar Cliente</h1>
+    
+    <p>Atualize os dados do cliente.</p>
+    
+    </div>
+    
+    <a href="/clientes" class="btn-voltar">
+    
+    <i class="fa-solid fa-arrow-left"></i>
+    
+    Voltar
+    
+    </a>
+    
+    </div>
+    
+    <div class="card-form">
+    
+    <form
+    action="/clientes/<%= cliente.id %>?_method=PUT"
+    method="POST">
+    
+    <div class="linha">
+    
+    <div class="campo">
+    
+    <label>Nome</label>
+    
+    <input
+    type="text"
+    name="nome"
+    value="<%= cliente.nome %>"
+    required>
+    
+    </div>
+    
+    <div class="campo">
+    
+    <label>CPF</label>
+    
+    <input
+    type="text"
+    name="cpf"
+    value="<%= cliente.cpf %>">
+    
+    </div>
+    
+    </div>
+    
+    <div class="linha">
+    
+    <div class="campo">
+    
+    <label>Email</label>
+    
+    <input
+    type="email"
+    name="email"
+    value="<%= cliente.email %>">
+    
+    </div>
+    
+    <div class="campo">
+    
+    <label>Telefone</label>
+    
+    <input
+    type="text"
+    name="telefone"
+    value="<%= cliente.telefone %>">
+    
+    </div>
+    
+    </div>
+    
+    <div class="linha">
+    
+    <div class="campo">
+    
+    <label>Endereço</label>
+    
+    <input
+    type="text"
+    name="endereco"
+    value="<%= cliente.endereco %>">
+    
+    </div>
+    
+    <div class="campo">
+    
+    <label>Cidade</label>
+    
+    <input
+    type="text"
+    name="cidade"
+    value="<%= cliente.cidade %>">
+    
+    </div>
+    
+    </div>
+    
+    <div class="linha">
+    
+    <div class="campo">
+    
+    <label>Estado</label>
+    
+    <input
+    type="text"
+    name="estado"
+    value="<%= cliente.estado %>">
+    
+    </div>
+    
+    <div class="campo">
+    
+    <label>CEP</label>
+    
+    <input
+    type="text"
+    name="cep"
+    value="<%= cliente.cep %>">
+    
+    </div>
+    
+    </div>
+    
+    <div class="botoes">
+    
+    <button
+    type="submit"
+    class="btn-salvar">
+    
+    <i class="fa-solid fa-pen"></i>
+    
+    Salvar Alterações
+    
+    </button>
+    
+    <a
+    href="/clientes"
+    class="btn-cancelar">
+    
+    Cancelar
+    
+    </a>
+    
+    </div>
+    
+    </form>
+    
+    </div>
+    
+    </main>
+    
+    <%- include('../partials/footer') %>

@@ -1,0 +1,220 @@
+<%- include('../partials/header',{
+    titulo:'Detalhes do Cliente',
+    paginaCss:'clientes'
+    }) %>
+    
+    <%- include('../partials/menu') %>
+    
+    <main class="conteudo">
+    
+    <div class="topo-pagina">
+    
+    <div>
+    
+    <h1>Detalhes do Cliente</h1>
+    
+    <p>Informações completas do cliente.</p>
+    
+    </div>
+    
+    <a href="/clientes" class="btn-voltar">
+    
+    <i class="fa-solid fa-arrow-left"></i>
+    
+    Voltar
+    
+    </a>
+    
+    </div>
+    
+    <div class="perfil-cliente">
+    
+    <div class="avatar">
+    
+    <i class="fa-solid fa-user"></i>
+    
+    </div>
+    
+    <div class="dados-principais">
+    
+    <h2><%= cliente.nome %></h2>
+    
+    <p>
+    
+    Cliente cadastrado no sistema da Oficina Mecânica.
+    
+    </p>
+    
+    </div>
+    
+    </div>
+    
+    <div class="grid-detalhes">
+    
+    <div class="card-info">
+    
+    <h3>
+    
+    <i class="fa-solid fa-id-card"></i>
+    
+    Informações Pessoais
+    
+    </h3>
+    
+    <table>
+    
+    <tr>
+    
+    <td><strong>Nome</strong></td>
+    
+    <td><%= cliente.nome %></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <td><strong>CPF</strong></td>
+    
+    <td><%= cliente.cpf || '-' %></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <td><strong>Email</strong></td>
+    
+    <td><%= cliente.email %></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <td><strong>Telefone</strong></td>
+    
+    <td><%= cliente.telefone %></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <td><strong>Endereço</strong></td>
+    
+    <td><%= cliente.endereco %></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <td><strong>Cidade</strong></td>
+    
+    <td><%= cliente.cidade %></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <td><strong>Estado</strong></td>
+    
+    <td><%= cliente.estado %></td>
+    
+    </tr>
+    
+    <tr>
+    
+    <td><strong>CEP</strong></td>
+    
+    <td><%= cliente.cep %></td>
+    
+    </tr>
+    
+    </table>
+    
+    </div>
+    
+    <div class="card-info">
+    
+    <h3>
+    
+    <i class="fa-solid fa-chart-simple"></i>
+    
+    Resumo
+    
+    </h3>
+    
+    <div class="estatisticas">
+    
+    <div class="item">
+    
+    <h2>
+    
+    <%= cliente.totalVeiculos || 0 %>
+    
+    </h2>
+    
+    <p>Veículos</p>
+    
+    </div>
+    
+    <div class="item">
+    
+    <h2>
+    
+    <%= cliente.totalOrdens || 0 %>
+    
+    </h2>
+    
+    <p>Ordens</p>
+    
+    </div>
+    
+    <div class="item">
+    
+    <h2>
+    
+    R$ <%= cliente.totalGasto || 0 %>
+    
+    </h2>
+    
+    <p>Total Gasto</p>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    <div class="acoes-detalhes">
+    
+    <a
+    href="/clientes/<%= cliente.id %>/editar"
+    class="btn-editar">
+    
+    <i class="fa-solid fa-pen"></i>
+    
+    Editar Cliente
+    
+    </a>
+    
+    <form
+    action="/clientes/<%= cliente.id %>?_method=DELETE"
+    method="POST">
+    
+    <button
+    class="btn-excluir"
+    onclick="return confirm('Deseja realmente excluir este cliente?')">
+    
+    <i class="fa-solid fa-trash"></i>
+    
+    Excluir
+    
+    </button>
+    
+    </form>
+    
+    </div>
+    
+    </main>
+    
+    <%- include('../partials/footer') %>

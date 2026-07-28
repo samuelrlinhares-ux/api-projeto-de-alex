@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login | Oficina Mecânica Pro</title>
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/login.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+<div class="lado-esquerdo">
+
+<div class="logo">
+
+<i class="fa-solid fa-screwdriver-wrench"></i>
+
+<h1>Oficina Mecânica Pro</h1>
+
+</div>
+
+<h2>Bem-vindo!</h2>
+
+<p>
+
+Gerencie clientes, veículos e ordens de serviço de forma rápida e segura.
+
+</p>
+
+<ul>
+
+<li><i class="fa-solid fa-circle-check"></i> Clientes</li>
+
+<li><i class="fa-solid fa-circle-check"></i> Veículos</li>
+
+<li><i class="fa-solid fa-circle-check"></i> Ordens de Serviço</li>
+
+<li><i class="fa-solid fa-circle-check"></i> Dashboard</li>
+
+</ul>
+
+</div>
+
+<div class="lado-direito">
+
+<div class="card-login">
+
+<h2>Entrar</h2>
+
+<form action="/auth/login" method="POST">
+
+<div class="campo">
+
+<label>Email</label>
+
+<input
+type="email"
+name="email"
+placeholder="Digite seu email"
+required>
+
+</div>
+
+<div class="campo">
+
+<label>Senha</label>
+
+<input
+id="senha"
+type="password"
+name="senha"
+placeholder="Digite sua senha"
+required>
+
+</div>
+
+<button
+class="btn-login"
+type="submit">
+
+<i class="fa-solid fa-right-to-bracket"></i>
+
+Entrar
+
+</button>
+
+</form>
+
+<div class="links">
+
+<a href="/auth/registro">
+
+Criar uma conta
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
