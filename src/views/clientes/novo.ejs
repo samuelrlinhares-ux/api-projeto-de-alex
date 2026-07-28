@@ -1,0 +1,147 @@
+<%- include('../partials/header',{titulo:'Novo Cliente',paginaCss:'clientes'}) %>
+<%- include('../partials/menu') %>
+
+<main class="conteudo">
+
+<div class="topo-pagina">
+
+<h1>Novo Cliente</h1>
+
+<a href="/clientes" class="btn-voltar">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Voltar
+
+</a>
+
+</div>
+
+<div class="card-form">
+
+<form action="/clientes" method="POST">
+
+<div class="linha">
+
+<div class="campo">
+
+<label>Nome Completo</label>
+
+<input
+type="text"
+name="nome"
+required>
+
+</div>
+
+<div class="campo">
+
+<label>CPF</label>
+
+<input
+type="text"
+name="cpf">
+
+</div>
+
+</div>
+
+<div class="linha">
+
+<div class="campo">
+
+<label>Email</label>
+
+<input
+type="email"
+name="email">
+
+</div>
+
+<div class="campo">
+
+<label>Telefone</label>
+
+<input
+type="text"
+name="telefone">
+
+</div>
+
+</div>
+
+<div class="linha">
+
+<div class="campo">
+
+<label>Endereço</label>
+
+<input
+type="text"
+name="endereco">
+
+</div>
+
+<div class="campo">
+
+<label>Cidade</label>
+
+<input
+type="text"
+name="cidade">
+
+</div>
+
+</div>
+
+<div class="linha">
+
+<div class="campo">
+
+<label>Estado</label>
+
+<input
+type="text"
+name="estado">
+
+</div>
+
+<div class="campo">
+
+<label>CEP</label>
+
+<input
+type="text"
+name="cep">
+
+</div>
+
+</div>
+
+<div class="botoes">
+
+<button class="btn-salvar">
+
+<i class="fa-solid fa-floppy-disk"></i>
+
+Salvar Cliente
+
+</button>
+
+<a
+href="/clientes"
+class="btn-cancelar">
+
+Cancelar
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+</main>
+
+<%- include('../partials/footer') %>
