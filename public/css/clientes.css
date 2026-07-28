@@ -1,0 +1,733 @@
+/* =========================================================
+   RODRIGO AUTOELÉTRICA
+   CLIENTES - ESTILO FUTURISTA
+   ========================================================= */
+
+/* ---------- RESET ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --azul-fundo: #0b1f36;
+    --azul-fundo-2: #102d4d;
+    --azul-principal: #1677ff;
+    --azul-claro: #3ea6ff;
+    --branco: #ffffff;
+    --branco-gelo: #f4f8ff;
+    --texto: #172033;
+    --texto-secundario: #64748b;
+    --borda: rgba(255, 255, 255, 0.25);
+    --sombra: rgba(4, 18, 40, 0.25);
+}
+
+/* ---------- PÁGINA ---------- */
+
+body {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    color: var(--texto);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(22, 119, 255, 0.25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(62, 166, 255, 0.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            var(--azul-fundo),
+            var(--azul-fundo-2)
+        );
+
+    background-attachment: fixed;
+}
+
+/* ---------- CONTAINER PRINCIPAL ---------- */
+
+.clientes-container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 45px 30px;
+}
+
+/* ---------- CABEÇALHO ---------- */
+
+.clientes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+/* ---------- TÍTULO 3D ---------- */
+
+.clientes-header h1 {
+    position: relative;
+    color: #ffffff;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1px;
+
+    /* Efeito 3D */
+    text-shadow:
+        0 1px 0 #dbeafe,
+        0 2px 0 #bfdbfe,
+        0 3px 0 #93c5fd,
+        0 4px 0 #60a5fa,
+        0 8px 18px rgba(0, 0, 0, 0.35);
+
+    margin-bottom: 10px;
+}
+
+/* Linha luminosa abaixo do título */
+
+.clientes-header h1::after {
+    content: "";
+    display: block;
+    width: 85px;
+    height: 4px;
+    margin-top: 12px;
+
+    background: linear-gradient(
+        90deg,
+        #1677ff,
+        #67c1ff,
+        transparent
+    );
+
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(62, 166, 255, 0.8);
+}
+
+.clientes-header p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 15px;
+    margin-top: 12px;
+}
+
+/* ---------- BOTÃO PRINCIPAL ---------- */
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 48px;
+    padding: 0 25px;
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2387ff,
+            #075dcc
+        );
+
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(0, 75, 170, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 100, 255, 0.45),
+        0 0 20px rgba(62, 166, 255, 0.3);
+
+    filter: brightness(1.1);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+}
+
+/* ---------- BARRA DE FERRAMENTAS ---------- */
+
+.clientes-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 22px;
+    margin-bottom: 25px;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.2);
+
+    backdrop-filter: blur(15px);
+}
+
+/* ---------- CAMPO DE BUSCA ---------- */
+
+.clientes-search {
+    position: relative;
+    flex: 1;
+    max-width: 550px;
+}
+
+.clientes-search input {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 18px;
+
+    border: 1px solid #dbe5f0;
+    border-radius: 10px;
+
+    outline: none;
+
+    background-color: #f8fbff;
+    color: #172033;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.clientes-search input::placeholder {
+    color: #94a3b8;
+}
+
+.clientes-search input:focus {
+    background-color: #ffffff;
+    border-color: #2387ff;
+
+    box-shadow:
+        0 0 0 4px rgba(35, 135, 255, 0.12),
+        0 5px 15px rgba(35, 135, 255, 0.1);
+}
+
+/* ---------- CARD DE CLIENTES ---------- */
+
+.clientes-card {
+    overflow: hidden;
+
+    background:
+        rgba(255, 255, 255, 0.97);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.22);
+
+    backdrop-filter: blur(15px);
+}
+
+/* ---------- TABELA ---------- */
+
+.clientes-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.clientes-table {
+    width: 100%;
+    min-width: 750px;
+    border-collapse: collapse;
+}
+
+/* Cabeçalho */
+
+.clientes-table thead {
+    background:
+        linear-gradient(
+            135deg,
+            #102d4d,
+            #164b7a
+        );
+}
+
+.clientes-table th {
+    padding: 18px;
+
+    text-align: left;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Corpo */
+
+.clientes-table td {
+    padding: 18px;
+
+    border-bottom: 1px solid #e6edf5;
+
+    color: #334155;
+    font-size: 14px;
+}
+
+.clientes-table tbody tr {
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.clientes-table tbody tr:hover {
+    background-color: #f1f7ff;
+}
+
+/* Última linha */
+
+.clientes-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ---------- NOME DO CLIENTE ---------- */
+
+.cliente-nome {
+    color: #0f2945;
+    font-weight: 700;
+}
+
+/* ---------- STATUS ---------- */
+
+.cliente-status {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 12px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.cliente-status.ativo {
+    color: #047857;
+
+    background-color: #d1fae5;
+
+    border: 1px solid #a7f3d0;
+
+    box-shadow:
+        0 3px 10px rgba(16, 185, 129, 0.15);
+}
+
+.cliente-status.inativo {
+    color: #b91c1c;
+
+    background-color: #fee2e2;
+
+    border: 1px solid #fecaca;
+}
+
+/* ---------- BOTÕES DE AÇÃO ---------- */
+
+.cliente-acoes {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 75px;
+    height: 36px;
+
+    padding: 0 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn-action:hover {
+    transform: translateY(-2px);
+}
+
+/* Visualizar */
+
+.btn-view {
+    color: #1d4ed8;
+    background-color: #e0edff;
+}
+
+.btn-view:hover {
+    box-shadow: 0 5px 15px rgba(29, 78, 216, 0.15);
+}
+
+/* Editar */
+
+.btn-edit {
+    color: #0369a1;
+    background-color: #dff4ff;
+}
+
+.btn-edit:hover {
+    box-shadow: 0 5px 15px rgba(3, 105, 161, 0.15);
+}
+
+/* Excluir */
+
+.btn-delete {
+    color: #b91c1c;
+    background-color: #fee2e2;
+}
+
+.btn-delete:hover {
+    box-shadow: 0 5px 15px rgba(185, 28, 28, 0.15);
+}
+
+/* ---------- FORMULÁRIO ---------- */
+
+.cliente-form-card {
+    max-width: 850px;
+
+    margin: 0 auto;
+    padding: 35px;
+
+    background:
+        rgba(255, 255, 255, 0.98);
+
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.22);
+}
+
+.cliente-form-card h2 {
+    color: #102d4d;
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+.cliente-form-card .form-description {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+/* ---------- CAMPOS ---------- */
+
+.cliente-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    color: #334155;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #d8e2ed;
+    border-radius: 9px;
+
+    outline: none;
+
+    background-color: #f8fbff;
+    color: #172033;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    background-color: #ffffff;
+
+    border-color: #2387ff;
+
+    box-shadow:
+        0 0 0 4px rgba(35, 135, 255, 0.1);
+}
+
+/* ---------- ERROS ---------- */
+
+.form-error {
+    display: none;
+
+    color: #dc2626;
+
+    font-size: 12px;
+}
+
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+    border-color: #dc2626;
+}
+
+.form-group.error .form-error {
+    display: block;
+}
+
+/* ---------- AÇÕES DO FORMULÁRIO ---------- */
+
+.form-actions {
+    grid-column: 1 / -1;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    margin-top: 10px;
+    padding-top: 22px;
+
+    border-top: 1px solid #e5eaf0;
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+    padding: 0 22px;
+
+    border: 1px solid #d5dfeb;
+    border-radius: 9px;
+
+    background-color: #f8fafc;
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #eaf0f7;
+    transform: translateY(-2px);
+}
+
+/* ---------- ALERTAS ---------- */
+
+.alert {
+    width: 100%;
+
+    padding: 15px 18px;
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.alert-success {
+    color: #047857;
+    background-color: #ecfdf5;
+    border: 1px solid #a7f3d0;
+}
+
+.alert-error {
+    color: #b91c1c;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+}
+
+.alert-info {
+    color: #1d4ed8;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+}
+
+/* ---------- LOADING ---------- */
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 180px;
+
+    color: #64748b;
+    font-size: 14px;
+}
+
+.loading-spinner {
+    width: 25px;
+    height: 25px;
+
+    margin-right: 12px;
+
+    border: 3px solid #dbeafe;
+    border-top-color: #1677ff;
+
+    border-radius: 50%;
+
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---------- ESTADO VAZIO ---------- */
+
+.empty-state {
+    padding: 60px 20px;
+
+    text-align: center;
+}
+
+.empty-state h3 {
+    color: #102d4d;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+/* ---------- RESPONSIVIDADE ---------- */
+
+@media (max-width: 768px) {
+
+    .clientes-container {
+        padding: 30px 18px;
+    }
+
+    .clientes-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .clientes-header h1 {
+        font-size: 32px;
+    }
+
+    .clientes-header .btn-primary {
+        width: 100%;
+    }
+
+    .clientes-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .clientes-search {
+        max-width: none;
+    }
+
+    .cliente-form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+    .form-actions {
+        grid-column: auto;
+        flex-direction: column-reverse;
+    }
+
+    .form-actions button,
+    .form-actions a {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .clientes-container {
+        padding: 25px 12px;
+    }
+
+    .cliente-form-card {
+        padding: 25px 18px;
+    }
+
+    .clientes-header h1 {
+        font-size: 28px;
+    }
+}
