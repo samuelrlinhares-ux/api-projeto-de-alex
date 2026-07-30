@@ -3,130 +3,237 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Cadastro | Oficina Mecânica Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/login.css">
+    <meta name="description" content="Cadastro de usuários - Rodrigo Autoelétrica">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Cadastro | Rodrigo Autoelétrica</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/login.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
+<div class="background-animation"></div>
+
 <div class="login-container">
 
-<div class="lado-esquerdo">
+    <div class="login-card fade-in">
 
-<div class="logo">
+        <div class="login-header">
 
-<i class="fa-solid fa-car"></i>
+            <div class="logo">
 
-<h1>Oficina Mecânica Pro</h1>
+                <i class="fa-solid fa-user-plus"></i>
 
-</div>
+            </div>
 
-<h2>Criar Conta</h2>
+            <h1>
 
-<p>
+                Rodrigo Autoelétrica
 
-Cadastre um novo usuário para acessar o sistema.
+            </h1>
 
-</p>
+            <h2>
 
-</div>
+                Cadastro de Usuário
 
-<div class="lado-direito">
+            </h2>
 
-<div class="card-login">
+            <p>
 
-<h2>Registro</h2>
+                Crie uma conta para acessar o sistema da oficina.
 
-<form
-action="/auth/registro"
-method="POST">
+            </p>
 
-<div class="campo">
+        </div>
 
-<label>Nome</label>
+        <% if(typeof erro !== 'undefined'){ %>
 
-<input
-type="text"
-name="nome"
-placeholder="Nome completo"
-required>
+        <div class="alert alert-danger">
 
-</div>
+            <i class="fa-solid fa-circle-exclamation"></i>
 
-<div class="campo">
+            <span>
 
-<label>Email</label>
+                <%= erro %>
 
-<input
-type="email"
-name="email"
-placeholder="Digite seu email"
-required>
+            </span>
 
-</div>
+        </div>
 
-<div class="campo">
+        <% } %>
 
-<label>Senha</label>
+        <% if(typeof sucesso !== 'undefined'){ %>
 
-<input
-type="password"
-name="senha"
-placeholder="Crie uma senha"
-required>
+        <div class="alert alert-success">
 
-</div>
+            <i class="fa-solid fa-circle-check"></i>
 
-<div class="campo">
+            <span>
 
-<label>Confirmar Senha</label>
+                <%= sucesso %>
 
-<input
-type="password"
-name="confirmarSenha"
-placeholder="Repita a senha"
-required>
+            </span>
 
-</div>
+        </div>
 
-<button
-type="submit"
-class="btn-login">
+        <% } %>
 
-<i class="fa-solid fa-user-plus"></i>
+        <form
 
-Cadastrar
+            id="registroForm"
 
-</button>
+            action="/registro"
 
-</form>
+            method="POST"
 
-<div class="links">
+            class="login-form"
 
-<a href="/auth/login">
+        >
 
-Já possui conta? Entrar
+            <div class="input-group">
 
-</a>
+                <label>
 
-</div>
+                    Nome Completo
 
-</div>
+                </label>
 
-</div>
+                <div class="input-icon">
 
-</div>
+                    <i class="fa-solid fa-user"></i>
 
-</body>
+                    <input
 
-</html>
+                        type="text"
+
+                        name="nome"
+
+                        placeholder="Digite seu nome"
+
+                        required
+
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+
+                    E-mail
+
+                </label>
+
+                <div class="input-icon">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+
+                        type="email"
+
+                        name="email"
+
+                        placeholder="Digite seu e-mail"
+
+                        required
+
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+
+                    Senha
+
+                </label>
+
+                <div class="input-icon">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+
+                        id="senha"
+
+                        type="password"
+
+                        name="senha"
+
+                        placeholder="Crie uma senha"
+
+                        required
+
+                    >
+
+                    <button
+
+                        type="button"
+
+                        id="mostrarSenha"
+
+                        class="mostrar-senha"
+
+                    >
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+
+                    Confirmar Senha
+
+                </label>
+
+                <div class="input-icon">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+
+                        id="confirmarSenha"
+
+                        type="password"
+
+                        name="confirmarSenha"
+
+                        placeholder="Repita a senha"
+
+                        required
+
+                    >
+
+                </div>
+
+            </div>
