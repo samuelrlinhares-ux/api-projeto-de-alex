@@ -1,286 +1,284 @@
-<%- include('../partials/header',{
-    titulo:'Clientes',
-    paginaCss:'clientes'
-    }) %>
-    
-    <%- include('../partials/menu') %>
-    
-    <main class="conteudo">
-    
-    <header class="pagina-topo">
-    
-    <div>
-    
-    <h1>Clientes</h1>
-    
-    <p>Gerencie todos os clientes cadastrados na oficina.</p>
-    
-    </div>
-    
-    <a href="/clientes/novo" class="btn-novo">
-    
-    <i class="fa-solid fa-user-plus"></i>
-    
-    Novo Cliente
-    
-    </a>
-    
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clientes | Rodrigo Autoelétrica</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/clientes.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="cliente-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-users"></i>
+
+                Clientes
+
+            </h1>
+
+            <p>
+
+                Gerencie todos os clientes cadastrados na Rodrigo Autoelétrica.
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <a
+
+            href="/clientes/novo"
+
+            class="btn btn-primary">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                Novo Cliente
+
+            </a>
+
+        </div>
+
     </header>
-    
-    <section class="barra-pesquisa">
-    
-    <form action="/clientes" method="GET">
-    
-    <div class="campo-pesquisa">
-    
-    <i class="fa-solid fa-magnifying-glass"></i>
-    
-    <input
-    type="text"
-    name="pesquisa"
-    placeholder="Pesquisar por nome, telefone ou e-mail">
-    
-    </div>
-    
-    <button>
-    
-    Pesquisar
-    
-    </button>
-    
-    </form>
-    
-    </section>
-    
-    <% if(typeof mensagem !== 'undefined'){ %>
-    
-    <div class="alerta">
-    
-    <%= mensagem %>
-    
-    </div>
-    
+
+    <% if(typeof sucesso !== 'undefined'){ %>
+
+        <div class="alert alert-success">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <%= sucesso %>
+
+        </div>
+
     <% } %>
-    
-    <section class="card-tabela">
-    
-    <table>
-    
-    <thead>
-    
-    <tr>
-    
-    <th>ID</th>
-    
-    <th>Nome</th>
-    
-    <th>Telefone</th>
-    
-    <th>Email</th>
-    
-    <th>Veículos</th>
-    
-    <th>Ações</th>
-    
-    </tr>
-    
-    </thead>
-    
-    <tbody>
-    
-    <% if(clientes && clientes.length>0){ %>
-    
-    <% clientes.forEach(cliente=>{ %>
-    
-    <tr>
-    
-    <td>
-    
-    #<%= cliente.id %>
-    
-    </td>
-    
-    <td>
-    
-    <strong>
-    
-    <%= cliente.nome %>
-    
-    </strong>
-    
-    </td>
-    
-    <td>
-    
-    <%= cliente.telefone %>
-    
-    </td>
-    
-    <td>
-    
-    <%= cliente.email %>
-    
-    </td>
-    
-    <td>
-    
-    <%= cliente.totalVeiculos || 0 %>
-    
-    </td>
-    
-    <td class="acoes">
-    
-    <a
-    href="/clientes/<%= cliente.id %>"
-    class="btn-ver">
-    
-    <i class="fa-solid fa-eye"></i>
-    
-    </a>
-    
-    <a
-    href="/clientes/<%= cliente.id %>/editar"
-    class="btn-editar">
-    
-    <i class="fa-solid fa-pen"></i>
-    
-    </a>
-    
-    <form
-    action="/clientes/<%= cliente.id %>?_method=DELETE"
-    method="POST"
-    style="display:inline;">
-    
-    <button
-    class="btn-excluir"
-    onclick="return confirm('Deseja excluir este cliente?')">
-    
-    <i class="fa-solid fa-trash"></i>
-    
-    </button>
-    
-    </form>
-    
-    </td>
-    
-    </tr>
-    
-    <% }) %>
-    
-    <% }else{ %>
-    
-    <tr>
-    
-    <td colspan="6">
-    
-    <div class="sem-registros">
-    
-    <i class="fa-solid fa-users"></i>
-    
-    <h3>
-    
-    Nenhum cliente encontrado
-    
-    </h3>
-    
-    <p>
-    
-    Cadastre o primeiro cliente da oficina.
-    
-    </p>
-    
-    <a
-    href="/clientes/novo"
-    class="btn-novo">
-    
-    Cadastrar Cliente
-    
-    </a>
-    
-    </div>
-    
-    </td>
-    
-    </tr>
-    
+
+    <% if(typeof erro !== 'undefined'){ %>
+
+        <div class="alert alert-danger">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            <%= erro %>
+
+        </div>
+
     <% } %>
-    
-    </tbody>
-    
-    </table>
-    
+
+    <section class="cards-veiculos">
+
+        <div class="card-info">
+
+            <h4>
+
+                Total de Clientes
+
+            </h4>
+
+            <h2>
+
+                <%= clientes.length %>
+
+            </h2>
+
+        </div>
+
+        <div class="card-info">
+
+            <h4>
+
+                Clientes Ativos
+
+            </h4>
+
+            <h2>
+
+                <%= clientes.length %>
+
+            </h2>
+
+        </div>
+
+        <div class="card-info">
+
+            <h4>
+
+                Veículos
+
+            </h4>
+
+            <h2>
+
+                <%= totalVeiculos || 0 %>
+
+            </h2>
+
+        </div>
+
+        <div class="card-info">
+
+            <h4>
+
+                Ordens
+
+            </h4>
+
+            <h2>
+
+                <%= totalOrdens || 0 %>
+
+            </h2>
+
+        </div>
+
     </section>
-    
-    <section class="estatisticas">
-    
-    <div class="card-estatistica">
-    
-    <i class="fa-solid fa-users"></i>
-    
-    <div>
-    
-    <h2>
-    
-    <%= totalClientes || clientes?.length || 0 %>
-    
-    </h2>
-    
-    <p>
-    
-    Clientes Cadastrados
-    
-    </p>
-    
-    </div>
-    
-    </div>
-    
-    <div class="card-estatistica">
-    
-    <i class="fa-solid fa-car"></i>
-    
-    <div>
-    
-    <h2>
-    
-    <%= totalVeiculos || 0 %>
-    
-    </h2>
-    
-    <p>
-    
-    Veículos
-    
-    </p>
-    
-    </div>
-    
-    </div>
-    
-    <div class="card-estatistica">
-    
-    <i class="fa-solid fa-screwdriver-wrench"></i>
-    
-    <div>
-    
-    <h2>
-    
-    <%= totalOrdens || 0 %>
-    
-    </h2>
-    
-    <p>
-    
-    Ordens de Serviço
-    
-    </p>
-    
-    </div>
-    
-    </div>
-    
+
+    <section class="busca-area">
+
+        <form
+
+        action="/clientes"
+
+        method="GET"
+
+        class="w-100 d-flex gap-20">
+
+            <input
+
+            type="text"
+
+            name="busca"
+
+            placeholder="Pesquisar por nome, CPF ou telefone...">
+
+            <button
+
+            class="btn btn-primary"
+
+            type="submit">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                Buscar
+
+            </button>
+
+        </form>
+
     </section>
-    
-    </main>
-    
-    <%- include('../partials/footer') %>
+
+    <section class="table-card">
+
+        <div class="table-responsive">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Foto</th>
+
+                        <th>Nome</th>
+
+                        <th>CPF</th>
+
+                        <th>Telefone</th>
+
+                        <th>E-mail</th>
+
+                        <th>Ações</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                <% if(clientes.length > 0){ %>
+
+                <% clientes.forEach(cliente=>{ %>
+
+                    <tr>
+
+                        <td>
+
+                            <% if(cliente.foto){ %>
+
+                                <img
+
+                                class="veiculo-foto"
+
+                                src="/uploads/<%= cliente.foto %>">
+
+                            <% }else{ %>
+
+                                <img
+
+                                class="veiculo-foto"
+
+                                src="/img/user.png">
+
+                            <% } %>
+
+                        </td>
+
+                        <td>
+
+                            <strong>
+
+                                <%= cliente.nome %>
+
+                            </strong>
+
+                        </td>
+
+                        <td>
+
+                            <%= cliente.cpf %>
+
+                        </td>
+
+                        <td>
+
+                            <%= cliente.telefone %>
+
+                        </td>
+
+                        <td>
+
+                            <%= cliente.email %>
+
+                        </td>
+
+                        <td>
+
+                            <div class="acoes">
+                                
