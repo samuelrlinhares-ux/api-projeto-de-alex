@@ -3,116 +3,421 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Login | Oficina Mecânica Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/login.css">
+    <meta name="description" content="Sistema de gerenciamento da Rodrigo Autoelétrica">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <meta name="author" content="Rodrigo Autoelétrica">
+
+    <title>Login | Rodrigo Autoelétrica</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/login.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
+<div class="background-animation"></div>
+
 <div class="login-container">
 
-<div class="lado-esquerdo">
+    <div class="login-card fade-in">
 
-<div class="logo">
+        <div class="login-header">
 
-<i class="fa-solid fa-screwdriver-wrench"></i>
+            <div class="logo">
 
-<h1>Oficina Mecânica Pro</h1>
+                <i class="fa-solid fa-car-battery"></i>
+
+            </div>
+
+            <h1>
+
+                Rodrigo Autoelétrica
+
+            </h1>
+
+            <h2>
+
+                Painel Administrativo
+
+            </h2>
+
+            <p>
+
+                Faça login para acessar o sistema da oficina.
+
+            </p>
+
+        </div>
+
+        <% if(typeof erro !== 'undefined'){ %>
+
+            <div class="alert alert-danger">
+
+                <i class="fa-solid fa-circle-exclamation"></i>
+
+                <span>
+
+                    <%= erro %>
+
+                </span>
+
+            </div>
+
+        <% } %>
+
+        <% if(typeof sucesso !== 'undefined'){ %>
+
+            <div class="alert alert-success">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <span>
+
+                    <%= sucesso %>
+
+                </span>
+
+            </div>
+
+        <% } %>
+
+        <form
+
+            action="/login"
+
+            method="POST"
+
+            id="loginForm"
+
+            class="login-form"
+
+        >
+
+            <div class="input-group">
+
+                <label>
+
+                    E-mail
+
+                </label>
+
+                <div class="input-icon">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+
+                        type="email"
+
+                        name="email"
+
+                        placeholder="Digite seu e-mail"
+
+                        autocomplete="email"
+
+                        required
+
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+
+                    Senha
+
+                </label>
+
+                <div class="input-icon">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+
+                        id="senha"
+
+                        type="password"
+
+                        name="senha"
+
+                        placeholder="Digite sua senha"
+
+                        autocomplete="current-password"
+
+                        required
+
+                    >
+
+                    <button
+
+                        type="button"
+
+                        id="mostrarSenha"
+
+                        class="mostrar-senha"
+
+                    >
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="login-options">
+
+                <label class="lembrar">
+
+                    <input
+
+                        type="checkbox"
+
+                        name="lembrar"
+
+                    >
+
+                    Lembrar de mim
+
+                </label>
+
+                <a
+
+                    href="/recuperar"
+
+                    class="recuperar"
+
+                >
+
+                    Esqueci minha senha
+
+                </a>
+
+            </div>            <button
+
+            type="submit"
+
+            class="btn-login"
+
+            id="btnEntrar"
+
+        >
+
+            <span class="texto-botao">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Entrar no Sistema
+
+            </span>
+
+            <span class="loading-login">
+
+                <i class="fa-solid fa-spinner fa-spin"></i>
+
+                Entrando...
+
+            </span>
+
+        </button>
+
+    </form>
+
+    <div class="divisor">
+
+        <span>
+
+            Rodrigo Autoelétrica
+
+        </span>
+
+    </div>
+
+    <div class="login-footer">
+
+        <p>
+
+            Ainda não possui uma conta?
+
+        </p>
+
+        <a
+
+            href="/registro"
+
+            class="btn-cadastro"
+
+        >
+
+            <i class="fa-solid fa-user-plus"></i>
+
+            Criar Conta
+
+        </a>
+
+    </div>
 
 </div>
 
-<h2>Bem-vindo!</h2>
+<div class="login-info">
+
+    <div class="info-card">
+
+        <div class="info-icon">
+
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+
+        </div>
+
+        <h2>
+
+            Sistema Inteligente
+
+        </h2>
+
+        <p>
+
+            Gerencie clientes, veículos, ordens de serviço,
+            funcionários e acompanhe toda a oficina em tempo real.
+
+        </p>
+
+    </div>
+
+    <div class="info-card">
+
+        <div class="info-icon">
+
+            <i class="fa-solid fa-car"></i>
+
+        </div>
+
+        <h2>
+
+            Controle Completo
+
+        </h2>
+
+        <p>
+
+            Cadastre veículos, acompanhe serviços,
+            registre peças utilizadas e organize o fluxo
+            de atendimento da oficina.
+
+        </p>
+
+    </div>
+
+    <div class="info-card">
+
+        <div class="info-icon">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+        </div>
+
+        <h2>
+
+            Segurança
+
+        </h2>
+
+        <p>
+
+            Sistema protegido com autenticação de usuários,
+            controle de acesso e gerenciamento seguro das
+            informações da empresa.
+
+        </p>
+
+    </div>
+
+</div>
+
+</div>
+
+<footer class="login-copy">
 
 <p>
 
-Gerencie clientes, veículos e ordens de serviço de forma rápida e segura.
+    © <%= new Date().getFullYear() %> Rodrigo Autoelétrica
 
 </p>
 
-<ul>
+<span>
 
-<li><i class="fa-solid fa-circle-check"></i> Clientes</li>
+    Sistema desenvolvido para gerenciamento de oficina mecânica.
 
-<li><i class="fa-solid fa-circle-check"></i> Veículos</li>
+</span>
 
-<li><i class="fa-solid fa-circle-check"></i> Ordens de Serviço</li>
+</footer>
 
-<li><i class="fa-solid fa-circle-check"></i> Dashboard</li>
+<script src="/js/login.js"></script>
 
-</ul>
+<script>
 
-</div>
+const botao=document.getElementById("btnEntrar");
 
-<div class="lado-direito">
+const form=document.getElementById("loginForm");
 
-<div class="card-login">
+if(form){
 
-<h2>Entrar</h2>
+form.addEventListener("submit",()=>{
 
-<form action="/auth/login" method="POST">
+    botao.classList.add("loading");
 
-<div class="campo">
+});
 
-<label>Email</label>
+}
 
-<input
-type="email"
-name="email"
-placeholder="Digite seu email"
-required>
+const senha=document.getElementById("senha");
 
-</div>
+const mostrar=document.getElementById("mostrarSenha");
 
-<div class="campo">
+if(mostrar){
 
-<label>Senha</label>
+mostrar.addEventListener("click",()=>{
 
-<input
-id="senha"
-type="password"
-name="senha"
-placeholder="Digite sua senha"
-required>
+    if(senha.type==="password"){
 
-</div>
+        senha.type="text";
 
-<button
-class="btn-login"
-type="submit">
+        mostrar.innerHTML='<i class="fa-solid fa-eye-slash"></i>';
 
-<i class="fa-solid fa-right-to-bracket"></i>
+    }else{
 
-Entrar
+        senha.type="password";
 
-</button>
+        mostrar.innerHTML='<i class="fa-solid fa-eye"></i>';
 
-</form>
+    }
 
-<div class="links">
+});
 
-<a href="/auth/registro">
+}
 
-Criar uma conta
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+</script>
 
 </body>
 
