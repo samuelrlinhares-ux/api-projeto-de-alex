@@ -1,220 +1,526 @@
-<%- include('../partials/header',{
-    titulo:'Detalhes do Cliente',
-    paginaCss:'clientes'
-    }) %>
-    
-    <%- include('../partials/menu') %>
-    
-    <main class="conteudo">
-    
-    <div class="topo-pagina">
-    
-    <div>
-    
-    <h1>Detalhes do Cliente</h1>
-    
-    <p>Informações completas do cliente.</p>
-    
-    </div>
-    
-    <a href="/clientes" class="btn-voltar">
-    
-    <i class="fa-solid fa-arrow-left"></i>
-    
-    Voltar
-    
-    </a>
-    
-    </div>
-    
-    <div class="perfil-cliente">
-    
-    <div class="avatar">
-    
-    <i class="fa-solid fa-user"></i>
-    
-    </div>
-    
-    <div class="dados-principais">
-    
-    <h2><%= cliente.nome %></h2>
-    
-    <p>
-    
-    Cliente cadastrado no sistema da Oficina Mecânica.
-    
-    </p>
-    
-    </div>
-    
-    </div>
-    
-    <div class="grid-detalhes">
-    
-    <div class="card-info">
-    
-    <h3>
-    
-    <i class="fa-solid fa-id-card"></i>
-    
-    Informações Pessoais
-    
-    </h3>
-    
-    <table>
-    
-    <tr>
-    
-    <td><strong>Nome</strong></td>
-    
-    <td><%= cliente.nome %></td>
-    
-    </tr>
-    
-    <tr>
-    
-    <td><strong>CPF</strong></td>
-    
-    <td><%= cliente.cpf || '-' %></td>
-    
-    </tr>
-    
-    <tr>
-    
-    <td><strong>Email</strong></td>
-    
-    <td><%= cliente.email %></td>
-    
-    </tr>
-    
-    <tr>
-    
-    <td><strong>Telefone</strong></td>
-    
-    <td><%= cliente.telefone %></td>
-    
-    </tr>
-    
-    <tr>
-    
-    <td><strong>Endereço</strong></td>
-    
-    <td><%= cliente.endereco %></td>
-    
-    </tr>
-    
-    <tr>
-    
-    <td><strong>Cidade</strong></td>
-    
-    <td><%= cliente.cidade %></td>
-    
-    </tr>
-    
-    <tr>
-    
-    <td><strong>Estado</strong></td>
-    
-    <td><%= cliente.estado %></td>
-    
-    </tr>
-    
-    <tr>
-    
-    <td><strong>CEP</strong></td>
-    
-    <td><%= cliente.cep %></td>
-    
-    </tr>
-    
-    </table>
-    
-    </div>
-    
-    <div class="card-info">
-    
-    <h3>
-    
-    <i class="fa-solid fa-chart-simple"></i>
-    
-    Resumo
-    
-    </h3>
-    
-    <div class="estatisticas">
-    
-    <div class="item">
-    
-    <h2>
-    
-    <%= cliente.totalVeiculos || 0 %>
-    
-    </h2>
-    
-    <p>Veículos</p>
-    
-    </div>
-    
-    <div class="item">
-    
-    <h2>
-    
-    <%= cliente.totalOrdens || 0 %>
-    
-    </h2>
-    
-    <p>Ordens</p>
-    
-    </div>
-    
-    <div class="item">
-    
-    <h2>
-    
-    R$ <%= cliente.totalGasto || 0 %>
-    
-    </h2>
-    
-    <p>Total Gasto</p>
-    
-    </div>
-    
-    </div>
-    
-    </div>
-    
-    </div>
-    
-    <div class="acoes-detalhes">
-    
-    <a
-    href="/clientes/<%= cliente.id %>/editar"
-    class="btn-editar">
-    
-    <i class="fa-solid fa-pen"></i>
-    
-    Editar Cliente
-    
-    </a>
-    
-    <form
-    action="/clientes/<%= cliente.id %>?_method=DELETE"
-    method="POST">
-    
-    <button
-    class="btn-excluir"
-    onclick="return confirm('Deseja realmente excluir este cliente?')">
-    
-    <i class="fa-solid fa-trash"></i>
-    
-    Excluir
-    
-    </button>
-    
-    </form>
-    
-    </div>
-    
-    </main>
-    
-    <%- include('../partials/footer') %>
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detalhes do Cliente | Rodrigo Autoelétrica</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/clientes.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="cliente-background"></div>
+
+<div class="container">
+
+    <header class="cliente-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-user"></i>
+
+                Detalhes do Cliente
+
+            </h1>
+
+            <p>
+
+                Visualização completa das informações cadastradas.
+
+            </p>
+
+        </div>
+
+        <div>
+
+            <a href="/clientes" class="btn-outline">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Voltar
+
+            </a>
+
+        </div>
+
+    </header>
+
+    <section class="cliente-card">
+
+        <div class="cliente-avatar">
+
+            <% if(cliente.foto){ %>
+
+                <img src="/uploads/<%= cliente.foto %>">
+
+            <% }else{ %>
+
+                <img src="/img/user.png">
+
+            <% } %>
+
+        </div>
+
+        <div class="cliente-info">
+
+            <h2>
+
+                <%= cliente.nome %>
+
+            </h2>
+
+            <p>
+
+                Cliente cadastrado na Rodrigo Autoelétrica
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="dados-grid">
+
+        <div class="card">
+
+            <h3>
+
+                <i class="fa-solid fa-address-card"></i>
+
+                Informações Pessoais
+
+            </h3>
+
+            <hr>
+
+            <div class="info">
+
+                <strong>CPF</strong>
+
+                <span>
+
+                    <%= cliente.cpf %>
+
+                </span>
+
+            </div>
+
+            <div class="info">
+
+                <strong>Telefone</strong>
+
+                <span>
+
+                    <%= cliente.telefone %>
+
+                </span>
+
+            </div>
+
+            <div class="info">
+
+                <strong>E-mail</strong>
+
+                <span>
+
+                    <%= cliente.email %>
+
+                </span>
+
+            </div>
+
+            <div class="info">
+
+                <strong>Endereço</strong>
+
+                <span>
+
+                    <%= cliente.endereco %>
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Estatísticas
+
+            </h3>
+
+            <hr>
+
+            <div class="status-box">
+
+                <div>
+
+                    <h2>
+
+                        <%= cliente.totalVeiculos || 0 %>
+
+                    </h2>
+
+                    <p>
+
+                        Veículos
+
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h2>
+
+                        <%= cliente.totalOrdens || 0 %>
+
+                    </h2>
+
+                    <p>
+
+                        Ordens
+
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h2>
+
+                        R$
+
+                        <%= cliente.totalGasto || 0 %>
+
+                    </h2>
+
+                    <p>
+
+                        Total Gasto
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <section class="card mt-30">
+
+        <div class="section-header">
+
+            <h2>
+
+                <i class="fa-solid fa-car"></i>
+
+                Veículos Cadastrados
+
+            </h2>
+
+        </div>
+
+        <% if(veiculos && veiculos.length > 0){ %>
+
+        <div class="table-responsive">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Foto</th>
+
+                        <th>Modelo</th>
+
+                        <th>Placa</th>
+
+                        <th>Ano</th>
+
+                        <th>Cor</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% veiculos.forEach(veiculo=>{ %>
+
+                    <tr>
+
+                        <td>
+
+                            <% if(veiculo.imagem){ %>
+
+                                <img
+                                class="veiculo-foto"
+                                src="/uploads/<%= veiculo.imagem %>">
+
+                            <% }else{ %>
+
+                                <img
+                                class="veiculo-foto"
+                                src="/img/carro.png">
+
+                            <% } %>
+
+                        </td>
+
+                        <td>
+
+                            <%= veiculo.modelo %>
+
+                        </td>
+
+                        <td>
+
+                            <%= veiculo.placa %>
+
+                        </td>
+
+                        <td>
+
+                            <%= veiculo.ano %>
+
+                        </td>
+
+                        <td>
+
+                            <%= veiculo.cor %>
+
+                        </td>
+
+                        <td>
+
+                            <span class="badge badge-info">
+
+                                <%= veiculo.status %>
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    <% }) %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <% }else{ %>
+
+            <div class="empty">
+
+                <i class="fa-solid fa-car-side"></i>
+
+                <h3>
+
+                    Nenhum veículo cadastrado
+
+                </h3>
+
+                <p>
+
+                    Este cliente ainda não possui veículos registrados.
+
+                </p>
+
+            </div>
+
+        <% } %>
+
+    </section>
+
+    <section class="card mt-30">
+
+        <div class="section-header">
+
+            <h2>
+
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                Histórico de Ordens de Serviço
+
+            </h2>
+
+        </div>
+
+        <% if(ordens && ordens.length > 0){ %>
+
+        <div class="timeline">
+
+            <% ordens.forEach(ordem=>{ %>
+
+            <div class="timeline-item">
+
+                <div class="timeline-content">
+
+                    <h3>
+
+                        Ordem #
+
+                        <%= ordem.id %>
+
+                    </h3>
+
+                    <span>
+
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                        <%= ordem.data %>
+
+                    </span>
+
+                    <p>
+
+                        <strong>Serviço:</strong>
+
+                        <%= ordem.servico %>
+
+                    </p>
+
+                    <p>
+
+                        <strong>Mecânico:</strong>
+
+                        <%= ordem.mecanico %>
+
+                    </p>
+
+                    <p>
+
+                        <strong>Valor:</strong>
+
+                        R$ <%= ordem.valor %>
+
+                    </p>
+
+                    <span class="badge badge-success">
+
+                        <%= ordem.status %>
+
+                    </span>
+
+                </div>
+
+            </div>
+
+            <% }) %>
+
+        </div>
+
+        <% }else{ %>
+
+        <div class="empty">
+
+            <i class="fa-solid fa-clipboard-list"></i>
+
+            <h3>
+
+                Nenhuma ordem encontrada
+
+            </h3>
+
+            <p>
+
+                Ainda não existem ordens de serviço para este cliente.
+
+            </p>
+
+        </div>
+
+        <% } %>
+
+    </section>
+
+    <section class="acoes mt-30">
+
+        <a
+
+        href="/clientes/editar/<%= cliente.id %>"
+
+        class="btn btn-primary">
+
+            <i class="fa-solid fa-pen"></i>
+
+            Editar
+
+        </a>
+
+        <form
+
+        action="/clientes/excluir/<%= cliente.id %>"
+
+        method="POST"
+
+        onsubmit="return confirmarExclusao()">
+
+            <button
+
+            class="btn btn-danger"
+
+            type="submit">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Excluir
+
+            </button>
+
+        </form>
+
+    </section>
+
+</div>
+
+<script>
+
+function confirmarExclusao(){
+
+    return confirm(
+
+        "Deseja realmente excluir este cliente?"
+
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>
