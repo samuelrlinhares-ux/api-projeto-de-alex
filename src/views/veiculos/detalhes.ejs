@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+
+<h2>Detalhes do Veículo</h2>
+
+<div class="card">
+
+<div class="card-body">
+
+<h4><%= veiculo.marca %> <%= veiculo.modelo %></h4>
+
+<hr>
+
+<p><strong>ID:</strong> <%= veiculo.id %></p>
+
+<p><strong>Marca:</strong> <%= veiculo.marca %></p>
+
+<p><strong>Modelo:</strong> <%= veiculo.modelo %></p>
+
+<p><strong>Ano:</strong> <%= veiculo.ano %></p>
+
+<p><strong>Placa:</strong> <%= veiculo.placa %></p>
+
+<a href="/veiculos" class="btn btn-secondary">
+Voltar
+</a>
+
+</div>
+
+</div>
+
+<%- include('../partials/footer') %>
