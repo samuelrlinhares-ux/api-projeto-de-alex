@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+
+<h2>Novo Veículo</h2>
+
+<form action="/veiculos" method="POST">
+
+<div class="mb-3">
+<label>Marca</label>
+<input type="text" name="marca" class="form-control">
+</div>
+
+<div class="mb-3">
+<label>Modelo</label>
+<input type="text" name="modelo" class="form-control">
+</div>
+
+<div class="mb-3">
+<label>Ano</label>
+<input type="number" name="ano" class="form-control">
+</div>
+
+<div class="mb-3">
+<label>Placa</label>
+<input type="text" name="placa" class="form-control">
+</div>
+
+<button class="btn btn-success">
+Cadastrar
+</button>
+
+</form>
+
+<%- include('../partials/footer') %>
