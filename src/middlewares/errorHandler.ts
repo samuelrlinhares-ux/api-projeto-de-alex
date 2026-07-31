@@ -13,4 +13,4 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
     } else {
         res.json({ message: err.message, stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack });
     }
-};
+}; 
