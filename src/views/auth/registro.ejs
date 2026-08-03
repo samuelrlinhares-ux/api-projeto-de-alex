@@ -237,3 +237,303 @@
                 </div>
 
             </div>
+            <div class="password-strength">
+
+                <div class="strength-bar">
+
+                    <div id="strengthFill"></div>
+
+                </div>
+
+                <small id="strengthText">
+
+                    A senha deve conter pelo menos 8 caracteres.
+
+                </small>
+
+            </div>
+
+            <div class="checkbox-area">
+
+                <label>
+
+                    <input
+
+                        type="checkbox"
+
+                        required
+
+                    >
+
+                    Li e concordo com os termos de uso do sistema.
+
+                </label>
+
+            </div>
+
+            <button
+
+                type="submit"
+
+                id="btnCadastrar"
+
+                class="btn-login"
+
+            >
+
+                <span class="texto-botao">
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    Criar Conta
+
+                </span>
+
+                <span class="loading-login">
+
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+
+                    Cadastrando...
+
+                </span>
+
+            </button>
+
+        </form>
+
+        <div class="divisor">
+
+            <span>
+
+                Rodrigo Autoelétrica
+
+            </span>
+
+        </div>
+
+        <div class="login-footer">
+
+            <p>
+
+                Já possui uma conta?
+
+            </p>
+
+            <a
+
+                href="/login"
+
+                class="btn-cadastro"
+
+            >
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Fazer Login
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="login-info">
+
+        <div class="info-card">
+
+            <div class="info-icon">
+
+                <i class="fa-solid fa-car"></i>
+
+            </div>
+
+            <h2>
+
+                Gerencie Veículos
+
+            </h2>
+
+            <p>
+
+                Cadastre veículos, acompanhe o histórico de serviços,
+                organize clientes e controle toda a oficina.
+
+            </p>
+
+        </div>
+
+        <div class="info-card">
+
+            <div class="info-icon">
+
+                <i class="fa-solid fa-gears"></i>
+
+            </div>
+
+            <h2>
+
+                Ordens de Serviço
+
+            </h2>
+
+            <p>
+
+                Controle serviços, peças utilizadas,
+                andamento da manutenção e entrega dos veículos.
+
+            </p>
+
+        </div>
+
+        <div class="info-card">
+
+            <div class="info-icon">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+            </div>
+
+            <h2>
+
+                Segurança
+
+            </h2>
+
+            <p>
+
+                Seus dados permanecem protegidos através
+                da autenticação do sistema.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="login-copy">
+
+    <p>
+
+        © <%= new Date().getFullYear() %> Rodrigo Autoelétrica
+
+    </p>
+
+    <span>
+
+        Sistema desenvolvido para gerenciamento de oficinas mecânicas.
+
+    </span>
+
+</footer>
+
+<script src="/js/login.js"></script>
+
+<script>
+
+const senha=document.getElementById("senha");
+
+const confirmar=document.getElementById("confirmarSenha");
+
+const mostrar=document.getElementById("mostrarSenha");
+
+const barra=document.getElementById("strengthFill");
+
+const texto=document.getElementById("strengthText");
+
+const form=document.getElementById("registroForm");
+
+const botao=document.getElementById("btnCadastrar");
+
+if(mostrar){
+
+    mostrar.addEventListener("click",()=>{
+
+        if(senha.type==="password"){
+
+            senha.type="text";
+
+            confirmar.type="text";
+
+            mostrar.innerHTML='<i class="fa-solid fa-eye-slash"></i>';
+
+        }else{
+
+            senha.type="password";
+
+            confirmar.type="password";
+
+            mostrar.innerHTML='<i class="fa-solid fa-eye"></i>';
+
+        }
+
+    });
+
+}
+
+senha.addEventListener("input",()=>{
+
+    let valor=senha.value;
+
+    let nivel=0;
+
+    if(valor.length>=8) nivel++;
+
+    if(/[A-Z]/.test(valor)) nivel++;
+
+    if(/[0-9]/.test(valor)) nivel++;
+
+    if(/[!@#$%^&*]/.test(valor)) nivel++;
+
+    barra.style.width=(nivel*25)+"%";
+
+    if(nivel<=1){
+
+        barra.style.background="#dc2626";
+
+        texto.innerHTML="Senha fraca";
+
+    }else if(nivel==2){
+
+        barra.style.background="#f59e0b";
+
+        texto.innerHTML="Senha média";
+
+    }else if(nivel==3){
+
+        barra.style.background="#2563eb";
+
+        texto.innerHTML="Senha boa";
+
+    }else{
+
+        barra.style.background="#16a34a";
+
+        texto.innerHTML="Senha forte";
+
+    }
+
+});
+
+form.addEventListener("submit",(e)=>{
+
+    if(senha.value!==confirmar.value){
+
+        e.preventDefault();
+
+        alert("As senhas não coincidem.");
+
+        return;
+
+    }
+
+    botao.classList.add("loading");
+
+});
+
+</script>
+
+</body>
+
+</html>

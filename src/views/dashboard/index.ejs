@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | Rodrigo Autoelétrica</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/dashboard.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-bolt"></i>
+
+            <h2>
+
+                Rodrigo Autoelétrica
+
+            </h2>
+
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li class="active">
+
+                    <a href="/dashboard">
+
+                        <i class="fa-solid fa-house"></i>
+
+                        Dashboard
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="/clientes">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        Clientes
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="/veiculos">
+
+                        <i class="fa-solid fa-car-side"></i>
+
+                        Veículos
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="/ordens">
+
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                        Ordens de Serviço
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="/logout">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        Sair
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </aside>
+
+    <main class="content">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+
+                    Bem-vindo,
+
+                    <%= usuario ? usuario.nome : "Administrador" %>
+
+                </h1>
+
+                <p>
+
+                    Painel de gerenciamento da Rodrigo Autoelétrica.
+
+                </p>
+
+            </div>
+
+            <div class="usuario-info">
+
+                <i class="fa-solid fa-circle-user"></i>
+
+            </div>
+
+        </header>
+
+        <section class="cards">
+
+            <div class="card">
+
+                <i class="fa-solid fa-users"></i>
+
+                <div>
+
+                    <h3>
+
+                        Clientes
+
+                    </h3>
+
+                    <h2>
+
+                        <%= totalClientes || 0 %>
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-car"></i>
+
+                <div>
+
+                    <h3>
+
+                        Veículos
+
+                    </h3>
+
+                    <h2>
+
+                        <%= totalVeiculos || 0 %>
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-file-circle-check"></i>
+
+                <div>
+
+                    <h3>
+
+                        Ordens
+
+                    </h3>
+
+                    <h2>
+
+                        <%= totalOrdens || 0 %>
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-sack-dollar"></i>
+
+                <div>
+
+                    <h3>
+
+                        Faturamento
+
+                    </h3>
+
+                    <h2>
+
+                        R$ <%= faturamento || "0,00" %>
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="painel-grid">
+
+            <div class="painel-card">
+
+                <div class="titulo-card">
+
+                    <h2>
+
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                        Últimas Ordens de Serviço
+
+                    </h2>
+
+                </div>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Cliente</th>
+
+                            <th>Veículo</th>
+
+                            <th>Status</th>
+
+                            <th>Valor</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <% if(ordens && ordens.length > 0){ %>
+
+                        <% ordens.forEach(ordem=>{ %>
+
+                        <tr>
+
+                            <td>
+
+                                <%= ordem.cliente %>
+
+                            </td>
+
+                            <td>
+
+                                <%= ordem.veiculo %>
+
+                            </td>
+
+                            <td>
+
+                                <span class="status">
+
+                                    <%= ordem.status %>
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                R$ <%= ordem.valor %>
+
+                            </td>
+
+                        </tr>
+
+                        <% }) %>
+
+                        <% } %>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+            <div class="painel-card">
+
+                <div class="titulo-card">
+
+                    <h2>
+
+                        <i class="fa-solid fa-car-side"></i>
+
+                        Veículos Recentes
+
+                    </h2>
+
+                </div>
+
+                <% if(veiculos && veiculos.length > 0){ %>
+
+                <div class="lista-veiculos">
+
+                    <% veiculos.forEach(veiculo=>{ %>
+
+                    <div class="item-lista">
+
+                        <div class="icone-item">
+
+                            <i class="fa-solid fa-car"></i>
+
+                        </div>
+
+                        <div class="dados-item">
+
+                            <h4>
+
+                                <%= veiculo.modelo %>
+
+                            </h4>
+
+                            <span>
+
+                                <%= veiculo.placa %>
+
+                            </span>
+
+                        </div>
+
+                        <div class="status-item">
+
+                            <span class="status">
+
+                                <%= veiculo.status %>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <% }) %>
+
+                </div>
+
+                <% }else{ %>
+
+                <div class="empty">
+
+                    <i class="fa-solid fa-car-side"></i>
+
+                    <p>
+
+                        Nenhum veículo cadastrado.
+
+                    </p>
+
+                </div>
+
+                <% } %>
+
+            </div>
+
+        </section>
+
+        <section class="painel-grid mt-30">
+
+            <div class="painel-card">
+
+                <div class="titulo-card">
+
+                    <h2>
+
+                        <i class="fa-solid fa-users"></i>
+
+                        Últimos Clientes
+
+                    </h2>
+
+                </div>
+
+                <% if(clientes && clientes.length > 0){ %>
+
+                <div class="lista-clientes">
+
+                    <% clientes.forEach(cliente=>{ %>
+
+                    <div class="cliente-item">
+
+                        <div class="foto-cliente">
+
+                            <% if(cliente.foto){ %>
+
+                            <img src="/uploads/<%= cliente.foto %>">
+
+                            <% }else{ %>
+
+                            <img src="/img/user.png">
+
+                            <% } %>
+
+                        </div>
+
+                        <div>
+
+                            <h4>
+
+                                <%= cliente.nome %>
+
+                            </h4>
+
+                            <span>
+
+                                <%= cliente.telefone %>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <% }) %>
+
+                </div>
+
+                <% }else{ %>
+
+                <div class="empty">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <p>
+
+                        Nenhum cliente cadastrado.
+
+                    </p>
+
+                </div>
+
+                <% } %>
+
+            </div>
+
+            <div class="painel-card">
+
+                <div class="titulo-card">
+
+                    <h2>
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                        Resumo do Sistema
+
+                    </h2>
+
+                </div>
+
+                <div class="estatisticas">
+
+                    <div class="barra-info">
+
+                        <span>
+
+                            Clientes
+
+                        </span>
+
+                        <progress value="<%= totalClientes || 0 %>" max="100"></progress>
+
+                    </div>
+
+                    <div class="barra-info">
+
+                        <span>
+
+                            Veículos
+
+                        </span>
+
+                        <progress value="<%= totalVeiculos || 0 %>" max="100"></progress>
+
+                    </div>
+
+                    <div class="barra-info">
+
+                        <span>
+
+                            Ordens
+
+                        </span>
+
+                        <progress value="<%= totalOrdens || 0 %>" max="100"></progress>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer class="dashboard-footer">
+
+            <p>
+
+                © <%= new Date().getFullYear() %> Rodrigo Autoelétrica
+
+            </p>
+
+            <span id="dataHora"></span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script>
+
+function atualizarRelogio(){
+
+    const agora=new Date();
+
+    document.getElementById("dataHora").innerHTML=
+
+    agora.toLocaleDateString("pt-BR")+" - "+agora.toLocaleTimeString("pt-BR");
+
+}
+
+setInterval(atualizarRelogio,1000);
+
+atualizarRelogio();
+
+</script>
+
+</body>
+
+</html>

@@ -281,4 +281,164 @@
                         <td>
 
                             <div class="acoes">
-                                
+                                <a
+                                href="/clientes/<%= cliente.id %>"
+                                class="btn-detalhes"
+                                title="Visualizar"
+                            >
+                                <i class="fa-solid fa-eye"></i>
+                            </a>
+
+                            <a
+                                href="/clientes/editar/<%= cliente.id %>"
+                                class="btn-editar"
+                                title="Editar"
+                            >
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+
+                            <form
+                                action="/clientes/excluir/<%= cliente.id %>"
+                                method="POST"
+                                class="form-excluir"
+                                onsubmit="return confirmarExclusao('<%= cliente.nome %>')"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="btn-excluir"
+                                    title="Excluir"
+                                >
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            <% }) %>
+
+            <% }else{ %>
+
+                <tr>
+
+                    <td colspan="6">
+
+                        <div class="empty">
+
+                            <i class="fa-solid fa-users-slash"></i>
+
+                            <h2>
+
+                                Nenhum cliente encontrado
+
+                            </h2>
+
+                            <p>
+
+                                Cadastre o primeiro cliente para começar a utilizar o sistema.
+
+                            </p>
+
+                            <a
+                                href="/clientes/novo"
+                                class="btn btn-primary mt-20"
+                            >
+
+                                <i class="fa-solid fa-user-plus"></i>
+
+                                Cadastrar Cliente
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            <% } %>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<section class="pagination mt-30">
+
+    <a href="#">
+
+        <i class="fa-solid fa-chevron-left"></i>
+
+    </a>
+
+    <a href="#" class="active">
+
+        1
+
+    </a>
+
+    <a href="#">
+
+        2
+
+    </a>
+
+    <a href="#">
+
+        3
+
+    </a>
+
+    <a href="#">
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+    </a>
+
+</section>
+
+</div>
+
+<script>
+
+function confirmarExclusao(nome){
+
+return confirm(
+
+    "Tem certeza que deseja excluir o cliente " +
+
+    nome +
+
+    " ?"
+
+);
+
+}
+
+const busca=document.querySelector("input[name='busca']");
+
+if(busca){
+
+busca.addEventListener("focus",()=>{
+
+    busca.style.transition=".3s";
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
