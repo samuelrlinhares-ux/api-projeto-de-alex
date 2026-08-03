@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { ClienteRepository } from '../models/ClienteRepository';
-import { Cliente } from '../entities/Cliente';
+import { Cliente } from '../entities/Cliente'
 import { authMiddleware } from '../middlewares/auth';
 
 const router = Router();
