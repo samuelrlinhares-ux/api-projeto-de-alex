@@ -1,169 +1,520 @@
 <%- include('../partials/header',{
     titulo:'Editar Cliente',
     paginaCss:'clientes'
-    }) %>
-    
-    <%- include('../partials/menu') %>
-    
-    <main class="conteudo">
-    
-    <div class="topo-pagina">
-    
-    <div>
-    
-    <h1>Editar Cliente</h1>
-    
-    <p>Atualize os dados do cliente.</p>
-    
-    </div>
-    
-    <a href="/clientes" class="btn-voltar">
-    
-    <i class="fa-solid fa-arrow-left"></i>
-    
-    Voltar
-    
-    </a>
-    
-    </div>
-    
-    <div class="card-form">
-    
+}) %>
+
+<%- include('../partials/menu') %>
+
+<main class="conteudo">
+
+<div class="cliente-background"></div>
+
+<div class="container">
+
+    <header class="cliente-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-user-pen"></i>
+
+                Editar Cliente
+
+            </h1>
+
+            <p>
+
+                Atualize as informações do cliente da Rodrigo Autoelétrica.
+
+            </p>
+
+        </div>
+
+        <a
+            href="/clientes"
+            class="btn-outline">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Voltar
+
+        </a>
+
+    </header>
+
+    <% if(typeof erro !== 'undefined'){ %>
+
+        <div class="alert alert-danger">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            <%= erro %>
+
+        </div>
+
+    <% } %>
+
+    <% if(typeof sucesso !== 'undefined'){ %>
+
+        <div class="alert alert-success">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <%= sucesso %>
+
+        </div>
+
+    <% } %>
+
     <form
-    action="/clientes/<%= cliente.id %>?_method=PUT"
-    method="POST">
-    
-    <div class="linha">
-    
-    <div class="campo">
-    
-    <label>Nome</label>
-    
-    <input
-    type="text"
-    name="nome"
-    value="<%= cliente.nome %>"
-    required>
-    
-    </div>
-    
-    <div class="campo">
-    
-    <label>CPF</label>
-    
-    <input
-    type="text"
-    name="cpf"
-    value="<%= cliente.cpf %>">
-    
-    </div>
-    
-    </div>
-    
-    <div class="linha">
-    
-    <div class="campo">
-    
-    <label>Email</label>
-    
-    <input
-    type="email"
-    name="email"
-    value="<%= cliente.email %>">
-    
-    </div>
-    
-    <div class="campo">
-    
-    <label>Telefone</label>
-    
-    <input
-    type="text"
-    name="telefone"
-    value="<%= cliente.telefone %>">
-    
-    </div>
-    
-    </div>
-    
-    <div class="linha">
-    
-    <div class="campo">
-    
-    <label>Endereço</label>
-    
-    <input
-    type="text"
-    name="endereco"
-    value="<%= cliente.endereco %>">
-    
-    </div>
-    
-    <div class="campo">
-    
-    <label>Cidade</label>
-    
-    <input
-    type="text"
-    name="cidade"
-    value="<%= cliente.cidade %>">
-    
-    </div>
-    
-    </div>
-    
-    <div class="linha">
-    
-    <div class="campo">
-    
-    <label>Estado</label>
-    
-    <input
-    type="text"
-    name="estado"
-    value="<%= cliente.estado %>">
-    
-    </div>
-    
-    <div class="campo">
-    
-    <label>CEP</label>
-    
-    <input
-    type="text"
-    name="cep"
-    value="<%= cliente.cep %>">
-    
-    </div>
-    
-    </div>
-    
-    <div class="botoes">
-    
-    <button
-    type="submit"
-    class="btn-salvar">
-    
-    <i class="fa-solid fa-pen"></i>
-    
-    Salvar Alterações
-    
-    </button>
-    
-    <a
-    href="/clientes"
-    class="btn-cancelar">
-    
-    Cancelar
-    
-    </a>
-    
-    </div>
-    
+
+        action="/clientes/<%= cliente.id %>?_method=PUT"
+
+        method="POST"
+
+        enctype="multipart/form-data"
+
+        class="form-card"
+
+        id="formEditar"
+
+    >
+
+        <h2>
+
+            Dados do Cliente
+
+        </h2>
+
+        <p>
+
+            Atualize todas as informações necessárias antes de salvar.
+
+        </p>
+
+        <div class="form-grid">
+
+            <div class="form-group full">
+
+                <label>
+
+                    Foto do Cliente
+
+                </label>
+
+                <div class="upload-area">
+
+                    <% if(cliente.foto){ %>
+
+                        <img
+                            id="preview"
+                            src="/uploads/<%= cliente.foto %>"
+                            class="preview-img">
+
+                    <% }else{ %>
+
+                        <img
+                            id="preview"
+                            src="/img/user.png"
+                            class="preview-img">
+
+                    <% } %>
+
+                    <input
+
+                        type="file"
+
+                        id="foto"
+
+                        name="foto"
+
+                        accept="image/*"
+
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Nome Completo *
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="nome"
+
+                    value="<%= cliente.nome %>"
+
+                    required
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    CPF *
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="cpf"
+
+                    value="<%= cliente.cpf %>"
+
+                    required
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Telefone *
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="telefone"
+
+                    value="<%= cliente.telefone %>"
+
+                    required
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    E-mail
+
+                </label>
+
+                <input
+
+                    type="email"
+
+                    name="email"
+
+                    value="<%= cliente.email %>"
+
+                >
+
+            </div>
+
+            <div class="form-group full">
+
+                <label>
+
+                    Endereço
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="endereco"
+
+                    value="<%= cliente.endereco %>"
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Cidade
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="cidade"
+
+                    value="<%= cliente.cidade %>"
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Estado
+
+                </label>
+
+                <select
+
+                    name="estado"
+
+                >
+
+                    <option value="<%= cliente.estado %>">
+
+                        <%= cliente.estado %>
+
+                    </option>
+
+                    <option>AC</option>
+                    <option>AL</option>
+                    <option>AP</option>
+                    <option>AM</option>
+                    <option>BA</option>
+                    <option>CE</option>
+                    <option>DF</option>
+                    <option>ES</option>
+                    <option>GO</option>
+                    <option>MA</option>
+                    <option>MT</option>
+                    <option>MS</option>
+                    <option>MG</option>
+                    <option>PA</option>
+                    <option>PB</option>
+                    <option>PR</option>
+                    <option>PE</option>
+                    <option>PI</option>
+                    <option>RJ</option>
+                    <option>RN</option>
+                    <option>RS</option>
+                    <option>RO</option>
+                    <option>RR</option>
+                    <option>SC</option>
+                    <option>SP</option>
+                    <option>SE</option>
+                    <option>TO</option>
+
+                </select>
+
+            </div>
+                        <div class="form-group">
+
+                <label>
+
+                    CEP
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="cep"
+
+                    id="cep"
+
+                    value="<%= cliente.cep || '' %>"
+
+                    placeholder="00000-000"
+
+                >
+
+            </div>
+
+            <div class="form-group full">
+
+                <label>
+
+                    Observações
+
+                </label>
+
+                <textarea
+
+                    name="observacoes"
+
+                    rows="5"
+
+                    placeholder="Informações adicionais sobre este cliente..."><%= cliente.observacoes || '' %></textarea>
+
+            </div>
+
+        </div>
+
+        <div class="detalhes-card">
+
+            <h2>
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                Informações do Cadastro
+
+            </h2>
+
+            <div class="status-box">
+
+                <div>
+
+                    <h2>
+
+                        <%= cliente.totalVeiculos || 0 %>
+
+                    </h2>
+
+                    <p>
+
+                        Veículos
+
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h2>
+
+                        <%= cliente.totalOrdens || 0 %>
+
+                    </h2>
+
+                    <p>
+
+                        Ordens
+
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h2>
+
+                        <%= cliente.dataCadastro || '--/--/----' %>
+
+                    </h2>
+
+                    <p>
+
+                        Cadastro
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button
+
+                type="submit"
+
+                class="btn-salvar"
+
+                id="btnSalvar"
+
+            >
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Salvar Alterações
+
+            </button>
+
+            <a
+
+                href="/clientes"
+
+                class="btn-cancelar"
+
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+                Cancelar
+
+            </a>
+
+        </div>
+
     </form>
-    
-    </div>
-    
-    </main>
-    
-    <%- include('../partials/footer') %>
+
+</div>
+
+</main>
+
+<script>
+
+const foto=document.getElementById("foto");
+
+const preview=document.getElementById("preview");
+
+if(foto){
+
+    foto.addEventListener("change",(e)=>{
+
+        const arquivo=e.target.files[0];
+
+        if(arquivo){
+
+            preview.src=URL.createObjectURL(arquivo);
+
+        }
+
+    });
+
+}
+
+let alterado=false;
+
+document.querySelectorAll("input, textarea, select").forEach(campo=>{
+
+    campo.addEventListener("input",()=>{
+
+        alterado=true;
+
+    });
+
+});
+
+window.addEventListener("beforeunload",(e)=>{
+
+    if(alterado){
+
+        e.preventDefault();
+
+        e.returnValue="";
+
+    }
+
+});
+
+document.getElementById("formEditar").addEventListener("submit", () => {
+
+document.getElementById("btnSalvar").innerHTML =
+    '<i class="fa-solid fa-spinner fa-spin"></i> Salvando...';
+
+});
+
+</script>
+
+<%- include('../partials/footer') %>
