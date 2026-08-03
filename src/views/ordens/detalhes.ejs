@@ -1,0 +1,359 @@
+<%- include('../partials/header',{
+    titulo:'Detalhes da Ordem de Serviço',
+    paginaCss:'ordens'
+}) %>
+
+<%- include('../partials/menu') %>
+
+<main class="conteudo">
+
+<div class="container">
+
+    <header class="cliente-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                Ordem de Serviço #<%= ordem.id %>
+
+            </h1>
+
+            <p>
+
+                Visualização completa da ordem de serviço.
+
+            </p>
+
+        </div>
+
+        <a
+        href="/ordens"
+        class="btn-outline">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Voltar
+
+        </a>
+
+    </header>
+
+    <section class="card">
+
+        <div class="status-box">
+
+            <div>
+
+                <h2>
+
+                    <%= ordem.status %>
+
+                </h2>
+
+                <p>
+
+                    Status
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <h2>
+
+                    R$ <%= ordem.valor %>
+
+                </h2>
+
+                <p>
+
+                    Valor
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <h2>
+
+                    <%= ordem.data %>
+
+                </h2>
+
+                <p>
+
+                    Data
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="dados-grid">
+
+        <div class="card">
+
+            <h3>
+
+                <i class="fa-solid fa-user"></i>
+
+                Cliente
+
+            </h3>
+
+            <hr>
+
+            <div class="info">
+
+                <strong>Nome</strong>
+
+                <span>
+
+                    <%= ordem.cliente %>
+
+                </span>
+
+            </div>
+
+            <div class="info">
+
+                <strong>Telefone</strong>
+
+                <span>
+
+                    <%= ordem.telefone %>
+
+                </span>
+
+            </div>
+
+            <div class="info">
+
+                <strong>E-mail</strong>
+
+                <span>
+
+                    <%= ordem.email %>
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+
+                <i class="fa-solid fa-car"></i>
+
+                Veículo
+
+            </h3>
+
+            <hr>
+
+            <div class="info">
+
+                <strong>Modelo</strong>
+
+                <span>
+
+                    <%= ordem.veiculo %>
+
+                </span>
+
+            </div>
+
+            <div class="info">
+
+                <strong>Placa</strong>
+
+                <span>
+
+                    <%= ordem.placa %>
+
+                </span>
+
+            </div>
+
+            <div class="info">
+
+                <strong>Ano</strong>
+
+                <span>
+
+                    <%= ordem.ano %>
+
+                </span>
+
+            </div>
+
+            <div class="info">
+
+                <strong>Cor</strong>
+
+                <span>
+
+                    <%= ordem.cor %>
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+    <section class="card mt-30">
+
+        <h3>
+
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+
+            Serviço Executado
+
+        </h3>
+
+        <hr>
+
+        <div class="info">
+
+            <strong>Descrição</strong>
+
+            <p>
+
+                <%= ordem.servico %>
+
+            </p>
+
+        </div>
+
+        <div class="info">
+
+            <strong>Peças Utilizadas</strong>
+
+            <p>
+
+                <%= ordem.pecas || 'Nenhuma peça cadastrada.' %>
+
+            </p>
+
+        </div>
+
+        <div class="info">
+
+            <strong>Mecânico Responsável</strong>
+
+            <p>
+
+                <%= ordem.mecanico || 'Não informado' %>
+
+            </p>
+
+        </div>
+
+        <div class="info">
+
+            <strong>Forma de Pagamento</strong>
+
+            <p>
+
+                <%= ordem.pagamento || 'Não informado' %>
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="card mt-30">
+
+        <h3>
+
+            <i class="fa-solid fa-note-sticky"></i>
+
+            Observações
+
+        </h3>
+
+        <hr>
+
+        <p class="texto-observacao">
+
+            <%= ordem.observacoes || 'Nenhuma observação cadastrada para esta ordem de serviço.' %>
+
+        </p>
+
+    </section>
+
+    <section class="acoes mt-30">
+
+        <a
+
+            href="/ordens/<%= ordem.id %>/editar"
+
+            class="btn btn-primary"
+
+        >
+
+            <i class="fa-solid fa-pen"></i>
+
+            Editar
+
+        </a>
+
+        <form
+
+            action="/ordens/<%= ordem.id %>?_method=DELETE"
+
+            method="POST"
+
+            onsubmit="return confirmarExclusao()"
+
+        >
+
+            <button
+
+                type="submit"
+
+                class="btn btn-danger"
+
+            >
+
+                <i class="fa-solid fa-trash"></i>
+
+                Excluir
+
+            </button>
+
+        </form>
+
+    </section>
+
+</div>
+
+<script>
+
+function confirmarExclusao(){
+
+    return confirm(
+
+        "Deseja realmente excluir esta ordem de serviço?"
+
+    );
+
+}
+
+</script>
+
+</main>
+
+<%- include('../partials/footer') %>

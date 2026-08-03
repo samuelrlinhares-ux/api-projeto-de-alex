@@ -1,0 +1,395 @@
+<%- include('../partials/header',{
+    titulo:'Editar Ordem de Serviço',
+    paginaCss:'ordens'
+}) %>
+
+<%- include('../partials/menu') %>
+
+<main class="conteudo">
+
+<div class="container">
+
+    <header class="cliente-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-file-pen"></i>
+
+                Editar Ordem de Serviço
+
+            </h1>
+
+            <p>
+
+                Atualize as informações da ordem de serviço.
+
+            </p>
+
+        </div>
+
+        <a
+
+            href="/ordens"
+
+            class="btn-outline"
+
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Voltar
+
+        </a>
+
+    </header>
+
+    <% if(typeof erro !== 'undefined'){ %>
+
+        <div class="alert alert-danger">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            <%= erro %>
+
+        </div>
+
+    <% } %>
+
+    <% if(typeof sucesso !== 'undefined'){ %>
+
+        <div class="alert alert-success">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <%= sucesso %>
+
+        </div>
+
+    <% } %>
+
+    <form
+
+        action="/ordens/<%= ordem.id %>?_method=PUT"
+
+        method="POST"
+
+        class="form-card"
+
+        id="formEditar"
+
+    >
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+
+                    Cliente
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="cliente"
+
+                    value="<%= ordem.cliente %>"
+
+                    required
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Veículo
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="veiculo"
+
+                    value="<%= ordem.veiculo %>"
+
+                    required
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Placa
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="placa"
+
+                    value="<%= ordem.placa %>"
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Mecânico
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="mecanico"
+
+                    value="<%= ordem.mecanico %>"
+
+                >
+
+            </div>
+
+            <div class="form-group full">
+
+                <label>
+
+                    Serviço Executado
+
+                </label>
+
+                <textarea
+
+                    name="servico"
+
+                    rows="5"
+
+                    required><%= ordem.servico %></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Valor (R$)
+
+                </label>
+
+                <input
+
+                    type="number"
+
+                    step="0.01"
+
+                    name="valor"
+
+                    value="<%= ordem.valor %>"
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Status
+
+                </label>
+
+                <select
+
+                    name="status"
+
+                >
+
+                    <option value="<%= ordem.status %>">
+
+                        <%= ordem.status %>
+
+                    </option>
+
+                    <option>Em andamento</option>
+
+                    <option>Aguardando peças</option>
+
+                    <option>Concluída</option>
+
+                    <option>Entregue</option>
+
+                    <option>Cancelada</option>
+
+                </select>
+
+            </div>
+            <div class="form-group">
+
+                <label>
+
+                    Data de Entrada
+
+                </label>
+
+                <input
+
+                    type="date"
+
+                    name="dataEntrada"
+
+                    value="<%= ordem.dataEntrada %>"
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Previsão de Entrega
+
+                </label>
+
+                <input
+
+                    type="date"
+
+                    name="previsaoEntrega"
+
+                    value="<%= ordem.previsaoEntrega %>"
+
+                >
+
+            </div>
+
+            <div class="form-group full">
+
+                <label>
+
+                    Observações
+
+                </label>
+
+                <textarea
+
+                    name="observacoes"
+
+                    rows="4"
+
+                ><%= ordem.observacoes %></textarea>
+
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button
+
+                type="submit"
+
+                class="btn-primary"
+
+            >
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Salvar Alterações
+
+            </button>
+
+            <a
+
+                href="/ordens"
+
+                class="btn-outline"
+
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+                Cancelar
+
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+</main>
+
+<script>
+
+const form = document.getElementById('formEditar');
+
+const placa = document.querySelector('input[name="placa"]');
+
+const valor = document.querySelector('input[name="valor"]');
+
+placa.addEventListener('input', () => {
+
+    let texto = placa.value
+        .toUpperCase()
+        .replace(/[^A-Z0-9]/g, '');
+
+    if (texto.length > 7) {
+
+        texto = texto.substring(0, 7);
+
+    }
+
+    placa.value = texto;
+
+});
+
+valor.addEventListener('input', () => {
+
+    if (Number(valor.value) < 0) {
+
+        valor.value = 0;
+
+    }
+
+});
+
+form.addEventListener('submit', (e) => {
+
+    const cliente = document.querySelector('input[name="cliente"]').value.trim();
+
+    const veiculo = document.querySelector('input[name="veiculo"]').value.trim();
+
+    const servico = document.querySelector('textarea[name="servico"]').value.trim();
+
+    if (!cliente || !veiculo || !servico) {
+
+        e.preventDefault();
+
+        alert('Preencha todos os campos obrigatórios.');
+
+    }
+
+});
+
+</script>
+
+<%- include('../partials/footer') %>
