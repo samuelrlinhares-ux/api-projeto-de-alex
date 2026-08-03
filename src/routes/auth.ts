@@ -1,4 +1,4 @@
-Gerencia as rotas de autenticação, incluindo login, registro e logout.
+// Gerencia as rotas de autenticação, incluindo login, registro e logout.
 import { Router } from 'express';
 import bcrypt from 'bcrypt';
 import { UsuarioRepository } from '../models/UsuarioRepository';

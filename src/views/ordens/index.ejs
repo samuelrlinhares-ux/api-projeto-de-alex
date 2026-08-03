@@ -1,0 +1,490 @@
+<%- include('../partials/header',{
+    titulo:'Ordens de Serviço',
+    paginaCss:'ordens'
+}) %>
+
+<%- include('../partials/menu') %>
+
+<main class="conteudo">
+
+<div class="container">
+
+    <header class="cliente-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                Ordens de Serviço
+
+            </h1>
+
+            <p>
+
+                Gerencie todas as ordens de serviço da oficina.
+
+            </p>
+
+        </div>
+
+        <a
+            href="/ordens/nova"
+            class="btn-primary"
+        >
+
+            <i class="fa-solid fa-plus"></i>
+
+            Nova Ordem
+
+        </a>
+
+    </header>
+
+    <% if(typeof sucesso !== 'undefined'){ %>
+
+    <div class="alert alert-success">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <%= sucesso %>
+
+    </div>
+
+    <% } %>
+
+    <% if(typeof erro !== 'undefined'){ %>
+
+    <div class="alert alert-danger">
+
+        <i class="fa-solid fa-circle-exclamation"></i>
+
+        <%= erro %>
+
+    </div>
+
+    <% } %>
+
+    <section class="cards">
+
+        <div class="card">
+
+            <i class="fa-solid fa-file-circle-check"></i>
+
+            <div>
+
+                <h3>
+
+                    Total de Ordens
+
+                </h3>
+
+                <h2>
+
+                    <%= totalOrdens || ordens.length %>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fa-solid fa-spinner"></i>
+
+            <div>
+
+                <h3>
+
+                    Em Andamento
+
+                </h3>
+
+                <h2>
+
+                    <%= emAndamento || 0 %>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <div>
+
+                <h3>
+
+                    Concluídas
+
+                </h3>
+
+                <h2>
+
+                    <%= concluidas || 0 %>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <i class="fa-solid fa-sack-dollar"></i>
+
+            <div>
+
+                <h3>
+
+                    Faturamento
+
+                </h3>
+
+                <h2>
+
+                    R$ <%= faturamento || '0,00' %>
+
+                </h2>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="painel-card">
+
+        <div class="titulo-card">
+
+            <h2>
+
+                <i class="fa-solid fa-filter"></i>
+
+                Pesquisar Ordens
+
+            </h2>
+
+        </div>
+
+        <form
+            action="/ordens"
+            method="GET"
+            class="form-grid"
+        >
+
+            <div class="form-group">
+
+                <label>
+
+                    Buscar
+
+                </label>
+
+                <input
+                    type="text"
+                    name="busca"
+                    placeholder="Cliente, veículo ou placa..."
+                    value="<%= busca || '' %>"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Status
+
+                </label>
+
+                <select name="status">
+
+                    <option value="">
+
+                        Todos
+
+                    </option>
+
+                    <option value="Em andamento">
+
+                        Em andamento
+
+                    </option>
+
+                    <option value="Aguardando peças">
+
+                        Aguardando peças
+
+                    </option>
+
+                    <option value="Concluída">
+
+                        Concluída
+
+                    </option>
+
+                    <option value="Entregue">
+
+                        Entregue
+
+                    </option>
+
+                    <option value="Cancelada">
+
+                        Cancelada
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group btn-group">
+
+                <button
+                    class="btn-primary"
+                    type="submit"
+                >
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Pesquisar
+
+                </button>
+
+                <a
+                    href="/ordens"
+                    class="btn-outline"
+                >
+
+                    <i class="fa-solid fa-rotate"></i>
+
+                    Limpar
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </section>
+
+    <section class="painel-card mt-30">
+
+        <div class="titulo-card">
+
+            <h2>
+
+                <i class="fa-solid fa-list"></i>
+
+                Lista de Ordens
+
+            </h2>
+
+        </div>
+
+        <% if(ordens && ordens.length > 0){ %>
+
+        <div class="table-responsive">
+
+            <table class="tabela">
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+
+                        <th>Cliente</th>
+
+                        <th>Veículo</th>
+
+                        <th>Placa</th>
+
+                        <th>Mecânico</th>
+
+                        <th>Valor</th>
+
+                        <th>Status</th>
+
+                        <th>Ações</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% ordens.forEach(ordem=>{ %>
+
+                    <tr>
+
+                        <td>
+
+                            #<%= ordem.id %>
+
+                        </td>
+
+                        <td>
+
+                            <%= ordem.cliente %>
+
+                        </td>
+
+                        <td>
+
+                            <%= ordem.veiculo %>
+
+                        </td>
+
+                        <td>
+
+                            <%= ordem.placa || '-' %>
+
+                        </td>
+
+                        <td>
+
+                            <%= ordem.mecanico || '-' %>
+
+                        </td>
+
+                        <td>
+
+                            R$ <%= ordem.valor %>
+
+                        </td>
+
+                        <td>
+
+                            <span class="status">
+
+                                <%= ordem.status %>
+
+                            </span>
+
+                        </td>
+
+                        <td class="acoes">
+                            <div class="acoes-btn">
+
+                                <a
+                                    href="/ordens/<%= ordem.id %>"
+                                    class="btn-icon btn-info"
+                                    title="Visualizar"
+                                >
+
+                                    <i class="fa-solid fa-eye"></i>
+
+                                </a>
+
+                                <a
+                                    href="/ordens/<%= ordem.id %>/editar"
+                                    class="btn-icon btn-warning"
+                                    title="Editar"
+                                >
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </a>
+
+                                <form
+                                    action="/ordens/<%= ordem.id %>?_method=DELETE"
+                                    method="POST"
+                                    class="form-delete"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="btn-icon btn-danger"
+                                        title="Excluir"
+                                    >
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    <% }) %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <% } else { %>
+
+        <div class="empty">
+
+            <i class="fa-solid fa-file-circle-xmark"></i>
+
+            <h3>
+
+                Nenhuma ordem encontrada
+
+            </h3>
+
+            <p>
+
+                Ainda não existem ordens de serviço cadastradas.
+
+            </p>
+
+            <a
+                href="/ordens/nova"
+                class="btn-primary"
+            >
+
+                <i class="fa-solid fa-plus"></i>
+
+                Cadastrar Primeira Ordem
+
+            </a>
+
+        </div>
+
+        <% } %>
+
+    </section>
+
+</div>
+
+</main>
+
+<script>
+
+const formulariosExcluir = document.querySelectorAll('.form-delete')
+
+formulariosExcluir.forEach(form => {
+
+    form.addEventListener('submit', e => {
+
+        const confirmar = confirm('Deseja realmente excluir esta ordem de serviço?')
+
+        if(!confirmar){
+
+            e.preventDefault()
+
+        }
+
+    })
+
+})
+
+</script>
+
+<%- include('../partials/footer') %>

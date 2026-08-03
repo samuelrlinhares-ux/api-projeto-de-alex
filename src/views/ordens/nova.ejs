@@ -1,0 +1,262 @@
+<%- include('../partials/header',{
+    titulo:'Nova Ordem de Serviço',
+    paginaCss:'ordens'
+}) %>
+
+<%- include('../partials/menu') %>
+
+<main class="conteudo">
+
+<div class="container">
+
+    <header class="cliente-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-file-circle-plus"></i>
+
+                Nova Ordem de Serviço
+
+            </h1>
+
+            <p>
+
+                Cadastre uma nova ordem de serviço para acompanhamento da oficina.
+
+            </p>
+
+        </div>
+
+        <a
+            href="/ordens"
+            class="btn-outline"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Voltar
+
+        </a>
+
+    </header>
+
+    <% if(typeof erro !== 'undefined'){ %>
+
+    <div class="alert alert-danger">
+
+        <i class="fa-solid fa-circle-exclamation"></i>
+
+        <%= erro %>
+
+    </div>
+
+    <% } %>
+
+    <% if(typeof sucesso !== 'undefined'){ %>
+
+    <div class="alert alert-success">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <%= sucesso %>
+
+    </div>
+
+    <% } %>
+
+    <form
+        action="/ordens"
+        method="POST"
+        class="form-card"
+        id="formOrdem"
+    >
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>
+
+                    Cliente
+
+                </label>
+
+                <input
+                    type="text"
+                    name="cliente"
+                    placeholder="Nome do cliente"
+                    value="<%= typeof dados !== 'undefined' ? dados.cliente : '' %>"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Veículo
+
+                </label>
+
+                <input
+                    type="text"
+                    name="veiculo"
+                    placeholder="Modelo do veículo"
+                    value="<%= typeof dados !== 'undefined' ? dados.veiculo : '' %>"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Placa
+
+                </label>
+
+                <input
+                    type="text"
+                    name="placa"
+                    maxlength="7"
+                    placeholder="ABC1234"
+                    value="<%= typeof dados !== 'undefined' ? dados.placa : '' %>"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Mecânico Responsável
+
+                </label>
+
+                <input
+                    type="text"
+                    name="mecanico"
+                    placeholder="Nome do mecânico"
+                    value="<%= typeof dados !== 'undefined' ? dados.mecanico : '' %>"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Data de Entrada
+
+                </label>
+
+                <input
+                    type="date"
+                    name="dataEntrada"
+                    value="<%= typeof dados !== 'undefined' ? dados.dataEntrada : '' %>"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Previsão de Entrega
+
+                </label>
+
+                <input
+                    type="date"
+                    name="previsaoEntrega"
+                    value="<%= typeof dados !== 'undefined' ? dados.previsaoEntrega : '' %>"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Status
+
+                </label>
+
+                <select
+                    name="status"
+                >
+
+                    <option value="Em andamento">
+
+                        Em andamento
+
+                    </option>
+
+                    <option value="Aguardando peças">
+
+                        Aguardando peças
+
+                    </option>
+
+                    <option value="Concluída">
+
+                        Concluída
+
+                    </option>
+
+                    <option value="Entregue">
+
+                        Entregue
+
+                    </option>
+
+                    <option value="Cancelada">
+
+                        Cancelada
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Valor do Serviço
+
+                </label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    name="valor"
+                    placeholder="0,00"
+                    value="<%= typeof dados !== 'undefined' ? dados.valor : '' %>"
+                >
+
+            </div>
+
+            <div class="form-group full">
+
+                <label>
+
+                    Serviço Executado
+
+                </label>
+
+                <textarea
+                    name="servico"
+                    rows="6"
+                    placeholder="Descreva detalhadamente o serviço realizado"
+                    required
+                ><%= typeof dados !== 'undefined' ? dados.servico : '' %></textarea>
+
+            </div>
+            
