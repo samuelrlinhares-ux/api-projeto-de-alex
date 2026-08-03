@@ -1,147 +1,507 @@
-<%- include('../partials/header',{titulo:'Novo Cliente',paginaCss:'clientes'}) %>
-<%- include('../partials/menu') %>
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-<main class="conteudo">
+<head>
 
-<div class="topo-pagina">
+    <meta charset="UTF-8">
 
-<h1>Novo Cliente</h1>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<a href="/clientes" class="btn-voltar">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<i class="fa-solid fa-arrow-left"></i>
+    <title>Novo Cliente | Rodrigo Autoelétrica</title>
 
-Voltar
+    <link rel="stylesheet" href="/css/style.css">
 
-</a>
+    <link rel="stylesheet" href="/css/clientes.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="cliente-header">
+
+        <div>
+
+            <h1>
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                Cadastrar Novo Cliente
+
+            </h1>
+
+            <p>
+
+                Preencha os dados abaixo para cadastrar um novo cliente na Rodrigo Autoelétrica.
+
+            </p>
+
+        </div>
+
+        <a
+            href="/clientes"
+            class="btn-outline"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Voltar
+
+        </a>
+
+    </header>
+
+    <% if(typeof erro !== 'undefined'){ %>
+
+        <div class="alert alert-danger">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            <%= erro %>
+
+        </div>
+
+    <% } %>
+
+    <form
+
+        action="/clientes"
+
+        method="POST"
+
+        enctype="multipart/form-data"
+
+        class="form-card"
+
+        id="formCliente"
+
+    >
+
+        <h2>
+
+            Informações do Cliente
+
+        </h2>
+
+        <p>
+
+            Todos os campos marcados com * são obrigatórios.
+
+        </p>
+
+        <div class="form-grid">
+
+            <div class="form-group full">
+
+                <label>
+
+                    Foto do Cliente
+
+                </label>
+
+                <div class="upload-area">
+
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                    <h3>
+
+                        Clique ou arraste uma imagem
+
+                    </h3>
+
+                    <p>
+
+                        JPG, JPEG ou PNG
+
+                    </p>
+
+                    <input
+
+                        type="file"
+
+                        id="foto"
+
+                        name="foto"
+
+                        accept="image/*"
+
+                    >
+
+                </div>
+
+                <div class="preview-imagem">
+
+                    <img
+
+                        id="preview"
+
+                        src="/img/user.png"
+
+                        alt="Preview"
+
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Nome Completo *
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="nome"
+
+                    placeholder="Digite o nome"
+
+                    required
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    CPF *
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="cpf"
+
+                    placeholder="000.000.000-00"
+
+                    required
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Telefone *
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="telefone"
+
+                    placeholder="(00) 00000-0000"
+
+                    required
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    E-mail
+
+                </label>
+
+                <input
+
+                    type="email"
+
+                    name="email"
+
+                    placeholder="cliente@email.com"
+
+                >
+
+            </div>
+
+            <div class="form-group full">
+
+                <label>
+
+                    Endereço *
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="endereco"
+
+                    placeholder="Rua, número, bairro e cidade"
+
+                    required
+
+                >
+
+            </div>
+            <div class="form-group">
+
+                <label>
+
+                    Cidade *
+
+                </label>
+
+                <input
+
+                    type="text"
+
+                    name="cidade"
+
+                    placeholder="Digite a cidade"
+
+                    required
+
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Estado *
+
+                </label>
+
+                <select
+
+                    name="estado"
+
+                    required
+
+                >
+
+                    <option value="">Selecione</option>
+
+                    <option>AC</option>
+                    <option>AL</option>
+                    <option>AP</option>
+                    <option>AM</option>
+                    <option>BA</option>
+                    <option>CE</option>
+                    <option>DF</option>
+                    <option>ES</option>
+                    <option>GO</option>
+                    <option>MA</option>
+                    <option>MT</option>
+                    <option>MS</option>
+                    <option>MG</option>
+                    <option>PA</option>
+                    <option>PB</option>
+                    <option>PR</option>
+                    <option>PE</option>
+                    <option>PI</option>
+                    <option>RJ</option>
+                    <option>RN</option>
+                    <option>RS</option>
+                    <option>RO</option>
+                    <option>RR</option>
+                    <option>SC</option>
+                    <option>SP</option>
+                    <option>SE</option>
+                    <option>TO</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group full">
+
+                <label>
+
+                    Observações
+
+                </label>
+
+                <textarea
+
+                    name="observacoes"
+
+                    placeholder="Informações adicionais sobre o cliente..."
+
+                ></textarea>
+
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button
+
+                type="submit"
+
+                class="btn-salvar"
+
+                id="btnSalvar"
+
+            >
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Salvar Cliente
+
+            </button>
+
+            <a
+
+                href="/clientes"
+
+                class="btn-cancelar"
+
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+                Cancelar
+
+            </a>
+
+        </div>
+
+    </form>
+
+    <section class="detalhes-card">
+
+        <h2>
+
+            <i class="fa-solid fa-lightbulb"></i>
+
+            Dicas para um bom cadastro
+
+        </h2>
+
+        <ul>
+
+            <li>
+
+                Confira se o CPF foi digitado corretamente.
+
+            </li>
+
+            <li>
+
+                Utilize um telefone válido para contato.
+
+            </li>
+
+            <li>
+
+                O endereço completo facilita futuras visitas.
+
+            </li>
+
+            <li>
+
+                Sempre que possível, adicione uma foto do cliente.
+
+            </li>
+
+            <li>
+
+                Utilize o campo de observações para registrar informações importantes.
+
+            </li>
+
+        </ul>
+
+    </section>
 
 </div>
 
-<div class="card-form">
+<script>
 
-<form action="/clientes" method="POST">
+const foto=document.getElementById("foto");
 
-<div class="linha">
+const preview=document.getElementById("preview");
 
-<div class="campo">
+if(foto){
 
-<label>Nome Completo</label>
+    foto.addEventListener("change",(e)=>{
 
-<input
-type="text"
-name="nome"
-required>
+        const arquivo=e.target.files[0];
 
-</div>
+        if(arquivo){
 
-<div class="campo">
+            preview.src=URL.createObjectURL(arquivo);
 
-<label>CPF</label>
+        }
 
-<input
-type="text"
-name="cpf">
+    });
 
-</div>
+}
 
-</div>
+const formulario=document.getElementById("formCliente");
 
-<div class="linha">
+let alterado=false;
 
-<div class="campo">
+formulario.querySelectorAll("input, textarea, select").forEach(campo=>{
 
-<label>Email</label>
+    campo.addEventListener("change",()=>{
 
-<input
-type="email"
-name="email">
+        alterado=true;
 
-</div>
+    });
 
-<div class="campo">
+});
 
-<label>Telefone</label>
+window.addEventListener("beforeunload",(e)=>{
 
-<input
-type="text"
-name="telefone">
+    if(alterado){
 
-</div>
+        e.preventDefault();
 
-</div>
+        e.returnValue="";
 
-<div class="linha">
+    }
 
-<div class="campo">
+});
 
-<label>Endereço</label>
+formulario.addEventListener("submit",()=>{
 
-<input
-type="text"
-name="endereco">
+    document.getElementById("btnSalvar").innerHTML=`
 
-</div>
+        <i class="fa-solid fa-spinner fa-spin"></i>
 
-<div class="campo">
+        Salvando...
 
-<label>Cidade</label>
+    `;
 
-<input
-type="text"
-name="cidade">
+});
 
-</div>
+</script>
 
-</div>
+</body>
 
-<div class="linha">
-
-<div class="campo">
-
-<label>Estado</label>
-
-<input
-type="text"
-name="estado">
-
-</div>
-
-<div class="campo">
-
-<label>CEP</label>
-
-<input
-type="text"
-name="cep">
-
-</div>
-
-</div>
-
-<div class="botoes">
-
-<button class="btn-salvar">
-
-<i class="fa-solid fa-floppy-disk"></i>
-
-Salvar Cliente
-
-</button>
-
-<a
-href="/clientes"
-class="btn-cancelar">
-
-Cancelar
-
-</a>
-
-</div>
-
-</form>
-
-</div>
-
-</main>
-
-<%- include('../partials/footer') %>
+</html>
